@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "955472800828",
+    "firebase_url": "https://musicapp-229db-default-rtdb.firebaseio.com",
+    "project_id": "musicapp-229db",
+    "storage_bucket": "musicapp-229db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:955472800828:android:b51e2a5b77bba8f5766739",
+        "android_client_info": {
+          "package_name": "edu.neu.madcourse.musicapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "955472800828-17efv4i9j6ssv0885qmskn5rjtculrbn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAyQMiilNFXY2w1bgMYZkXupz-381weHY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "955472800828-17efv4i9j6ssv0885qmskn5rjtculrbn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
