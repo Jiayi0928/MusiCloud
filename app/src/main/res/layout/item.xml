@@ -49,7 +49,7 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/player"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

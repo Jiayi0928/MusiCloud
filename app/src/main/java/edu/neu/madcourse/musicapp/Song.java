@@ -1,13 +1,17 @@
 package edu.neu.madcourse.musicapp;
 
+import android.net.Uri;
+
 public class Song {
     private String title;
     private String artist;
     private String img;
-    public Song(String title,String artist,String img){
+    private String url;
+    public Song(String title,String artist,String img, String url){
         this.title = title;
         this.artist = artist;
         this.img = img;
+        this.url = url;
     }
 
     public Song(){}
@@ -31,5 +35,9 @@ public class Song {
 
     public String getTitle() {
         return title;
+    }
+
+    public String getPreview() {
+        return url;
     }
 }
