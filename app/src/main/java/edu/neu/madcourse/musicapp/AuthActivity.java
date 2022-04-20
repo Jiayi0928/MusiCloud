@@ -1,15 +1,11 @@
 package edu.neu.madcourse.musicapp;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.TextView;
 
-import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -142,11 +138,11 @@ public class AuthActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                //String op = "title: " + title + "\nuri: " + track_uri + "\nartist: " + artist + "\npreview: " + preview_url + "\nImg: " + img_url;
+                String op = "title: " + title + "\nuri: " + track_uri + "\nartist: " + artist + "\npreview: " + preview_url + "\nImg: " + img_url;
                 //Log.i("INFO", op);
-                Song songItem = new Song(title,artist,img_url,preview_url);
+                Song songItem = new Song(title,artist,img_url,preview_url,track_uri);
                 songList.add(songItem);
-                Log.i("Item",songItem.toString());
+                //Log.i("Item",songItem.toString());
             }
 
             createRecyclerView(songList);

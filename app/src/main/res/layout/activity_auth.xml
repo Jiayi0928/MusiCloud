@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Search_Results_Activity">
+    tools:context=".AuthActivity">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -16,14 +16,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/search_results"
-                android:textAlignment="center"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+            <include layout="@layout/navbar"
+                android:id="@+id/navbar"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvSongs"

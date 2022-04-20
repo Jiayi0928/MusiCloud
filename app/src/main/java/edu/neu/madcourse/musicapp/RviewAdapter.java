@@ -1,8 +1,7 @@
 package edu.neu.madcourse.musicapp;
 
-import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,16 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.ArrayList;
 
 public class RviewAdapter extends RecyclerView.Adapter<RviewAdapter.ViewHolder> {
     private ArrayList<Song> searchResultsList;
     private ItemClickListener itemClickListener;
-    private static MediaPlayer mp;
 
     public RviewAdapter(ArrayList<Song> searchResultsList){
         this.searchResultsList = searchResultsList;
@@ -43,14 +37,17 @@ public class RviewAdapter extends RecyclerView.Adapter<RviewAdapter.ViewHolder> 
         holder.title_name.setText(curSong.getTitle());
         Picasso.get().load(curSong.getImg()).into(holder.album_img);
 
-        holder.player.setOnClickListener(new View.OnClickListener() {
+
+        holder.title_name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    PlayAudioManager.playAudio(view.getContext(), curSong.getPreview());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                Intent intent = new Intent(view.getContext(), PostActivity.class);
+                intent.putExtra("title",curSong.getTitle());
+                intent.putExtra("artist",curSong.getArtist());
+                intent.putExtra("img",curSong.getImg());
+                intent.putExtra("preview",curSong.getPreview());
+                intent.putExtra("track_uri",curSong.getTrack_uri());
+                view.getContext().startActivity(intent);
             }
         });
 
@@ -74,7 +71,6 @@ public class RviewAdapter extends RecyclerView.Adapter<RviewAdapter.ViewHolder> 
             title_name = view.findViewById(R.id.item_title);
             artist_name = view.findViewById(R.id.item_artist);
             album_img = view.findViewById(R.id.albumImg);
-            player = view.findViewById(R.id.player);
             view.setOnClickListener(this);
         }
 

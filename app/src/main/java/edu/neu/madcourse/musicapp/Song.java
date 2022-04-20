@@ -1,17 +1,18 @@
 package edu.neu.madcourse.musicapp;
 
-import android.net.Uri;
 
 public class Song {
     private String title;
     private String artist;
     private String img;
-    private String url;
-    public Song(String title,String artist,String img, String url){
+    private String track_uri;
+    private String preview;
+    public Song(String title,String artist,String img,String preview, String track_uri){
         this.title = title;
         this.artist = artist;
         this.img = img;
-        this.url = url;
+        this.preview = preview;
+        this.track_uri = track_uri;
     }
 
     public Song(){}
@@ -38,6 +39,8 @@ public class Song {
     }
 
     public String getPreview() {
-        return url;
+        return preview;
     }
+
+    public String getTrack_uri(){ return track_uri;}
 }

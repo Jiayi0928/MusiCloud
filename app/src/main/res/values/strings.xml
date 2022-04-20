@@ -1,4 +1,24 @@
 <resources>
-    <string name="app_name">MusicApp</string>
+    <string name="app_name">MusicCloud</string>
     <string name="search_results">Search Results:</string>
+    <string name="postUserText">Post Username</string>
+    <string name="postTime">Post Time</string>
+    <string name="songTitle">Song Title</string>
+    <string name="songArtist">Song Artist</string>
+    <string name="postTitle">Title</string>
+    <string name="postContent">Content</string>
+    <string name="comments">Comments</string>
+    <string name="commentsCnt">(cnt)</string>
+    <string name="commentUsername">Username</string>
+    <string name="commentContent">Content</string>
+    <string name="commentTime">Time</string>
+    <string name="commentLikes">cnt</string>
+    <string name="loginHeader">Welcome Back!</string>
+    <string name="loginBtn">Login</string>
+    <string name="switchToSignUpHelperText">Don\'t have an account?</string>
+    <string name="switchToSignUpHelperLink">Sign Up</string>
+    <string name="signupHeader">Create Your MusiCloud Account!</string>
+    <string name="signupBtn">Sign Up</string>
+    <string name="switchToLoginHelperText">Already have an account?</string>
+    <string name="switchToLoginHelperLink">Log in</string>
 </resources>
