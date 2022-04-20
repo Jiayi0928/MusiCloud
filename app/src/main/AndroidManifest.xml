@@ -16,7 +16,7 @@
             android:name="edu.neu.madcourse.musicloud.PostActivity"
             android:exported="false" />
         <activity
-            android:name="edu.neu.madcourse.musicloud.AuthActivity"
+            android:name="edu.neu.madcourse.musicloud.SearchResults"
             android:exported="false" />
         <activity
             android:name="edu.neu.madcourse.musicloud.LoginActivity"

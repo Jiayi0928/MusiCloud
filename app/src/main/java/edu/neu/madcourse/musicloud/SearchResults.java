@@ -20,7 +20,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class AuthActivity extends AppCompatActivity {
+public class SearchResults extends AppCompatActivity {
     private static final String CLIENT_ID = "45b88b6d879642789bb87173c5e0d190";
     private static final String REDIRECT_URI = "http://example.com/callback";
     public static final int AUTH_TOKEN_REQUEST_CODE = 0x10;
@@ -35,7 +35,7 @@ public class AuthActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_auth);
+        setContentView(R.layout.activity_searchresults);
         mAccessToken = getIntent().getExtras().getString("token");
         keyword_i_need = getIntent().getExtras().getString("keyword I need");
         recyclerView = findViewById(R.id.rvSongs);

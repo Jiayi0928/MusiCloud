@@ -94,7 +94,7 @@ public class Home extends AppCompatActivity {
 
 
     public void test(View view){
-        Intent intent = new Intent(Home.this,AuthActivity.class);
+        Intent intent = new Intent(Home.this, SearchResults.class);
         intent.putExtra("token",mAccessToken);
         intent.putExtra("keyword I need",keyword.getText().toString());
         startActivity(intent);
@@ -107,7 +107,7 @@ public class Home extends AppCompatActivity {
      */
 
     private void searchResult(String s){
-        Intent intent = new Intent(Home.this, AuthActivity.class);
+        Intent intent = new Intent(Home.this, SearchResults.class);
         intent.putExtra("token",mAccessToken);
         intent.putExtra("keyword I need",s);
         startActivity(intent);
