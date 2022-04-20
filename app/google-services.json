@@ -1,34 +1,33 @@
 {
   "project_info": {
-    "project_number": "955472800828",
-    "firebase_url": "https://musicapp-229db-default-rtdb.firebaseio.com",
-    "project_id": "musicapp-229db",
-    "storage_bucket": "musicapp-229db.appspot.com"
+    "project_number": "636781610854",
+    "project_id": "musicloud-28210",
+    "storage_bucket": "musicloud-28210.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:955472800828:android:b51e2a5b77bba8f5766739",
+        "mobilesdk_app_id": "1:636781610854:android:d3a1d96ce35fefbeb26aa7",
         "android_client_info": {
           "package_name": "edu.neu.madcourse.musicloud"
         }
       },
       "oauth_client": [
         {
-          "client_id": "955472800828-17efv4i9j6ssv0885qmskn5rjtculrbn.apps.googleusercontent.com",
+          "client_id": "636781610854-u4snvt8psp2lbut144c85nt9vearsiqc.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAAyQMiilNFXY2w1bgMYZkXupz-381weHY"
+          "current_key": "AIzaSyCkD_Oa5TxfETlKcRvWiw4NhU-Q2lrTQtE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "955472800828-17efv4i9j6ssv0885qmskn5rjtculrbn.apps.googleusercontent.com",
+              "client_id": "636781610854-u4snvt8psp2lbut144c85nt9vearsiqc.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
