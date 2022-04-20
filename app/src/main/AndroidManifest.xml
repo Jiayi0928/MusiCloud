@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="edu.neu.madcourse.musicapp">
+    package="edu.neu.madcourse.musicloud">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -13,13 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MusicApp">
         <activity
-            android:name=".PostActivity"
+            android:name="edu.neu.madcourse.musicloud.PostActivity"
             android:exported="false" />
         <activity
-            android:name=".AuthActivity"
+            android:name="edu.neu.madcourse.musicloud.AuthActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="edu.neu.madcourse.musicloud.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

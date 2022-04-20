@@ -1,4 +1,4 @@
-package edu.neu.madcourse.musicapp;
+package edu.neu.madcourse.musicloud;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -69,9 +70,9 @@ public class PostActivity extends AppCompatActivity {
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-                    if (!mediaPlayer.isPlaying()) {
+                if(preview.equals("null"))
+                    Toast.makeText(getApplicationContext(),"Sorry! No preview available for this song on Spotify.", Toast.LENGTH_SHORT).show();
+                else if (!mediaPlayer.isPlaying()) {
                         playButton.setVisibility(View.GONE);
                         pauseButton.setVisibility(View.VISIBLE);
                         mediaPlayer.start();

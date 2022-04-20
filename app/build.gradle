@@ -5,7 +5,7 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "edu.neu.madcourse.musicapp"
+        applicationId "edu.neu.madcourse.musicloud"
         minSdk 26
         targetSdk 32
         versionCode 1

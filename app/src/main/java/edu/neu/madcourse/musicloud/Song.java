@@ -1,4 +1,4 @@
-package edu.neu.madcourse.musicapp;
+package edu.neu.madcourse.musicloud;
 
 
 public class Song {

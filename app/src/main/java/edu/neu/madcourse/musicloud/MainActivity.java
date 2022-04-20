@@ -1,4 +1,4 @@
-package edu.neu.madcourse.musicapp;
+package edu.neu.madcourse.musicloud;
 
 import androidx.appcompat.app.AppCompatActivity;
 
