@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".LoginActivity">
+
+        <include layout="@layout/login_navbar"
+            android:id="@+id/navbarLogin"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+        <ImageView
+            android:id="@+id/loginImg"
+            android:layout_width="300dp"
+            android:layout_height="198dp"
+            android:layout_margin="20dp"
+            android:src="@drawable/login_page"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/navbarLogin" />
+
+        <TextView
+            android:id="@+id/loginHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/loginHeader"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/loginImg" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/loginUsernameInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="Username"
+            android:text=""
+            app:boxCornerRadiusBottomEnd="20dp"
+            app:boxCornerRadiusBottomStart="20dp"
+            app:boxCornerRadiusTopEnd="20dp"
+            app:boxCornerRadiusTopStart="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/loginHeader"
+            app:startIconDrawable="@drawable/ic_baseline_person_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/loginUsernameInput"
+                android:layout_width="300dp"
+                android:layout_height="50dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/loginPasswordInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="Password"
+            android:text=""
+            app:boxCornerRadiusBottomEnd="20dp"
+            app:boxCornerRadiusBottomStart="20dp"
+            app:boxCornerRadiusTopEnd="20dp"
+            app:boxCornerRadiusTopStart="20dp"
+            app:endIconMode="password_toggle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/loginUsernameInputLayout"
+            app:startIconDrawable="@drawable/ic_baseline_vpn_key_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/loginPasswordInput"
+                android:layout_width="300dp"
+                android:layout_height="50dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/loginButton"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/loginBtn"
+            app:cornerRadius="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/loginPasswordInputLayout" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            app:layout_constraintTop_toBottomOf="@id/loginButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/loginHelperText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="2dp"
+                android:text="@string/switchToSignUpHelperText"/>
+
+            <TextView
+                android:id="@+id/loginHelperLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/switchToSignUpHelperLink"
+                android:textColor="@color/purple_700"/>
+
+        </LinearLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

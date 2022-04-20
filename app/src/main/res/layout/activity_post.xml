@@ -21,78 +21,6 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/postUserConstraintLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/navbar">
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/postUserImgCard"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            app:cardCornerRadius="40dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:strokeColor="@color/black"
-            app:strokeWidth="2dp">
-
-            <ImageView
-                android:id="@+id/postUserImg"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/anon" />
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <LinearLayout
-            android:id="@+id/postUserLinearLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginStart="16dp"
-            app:layout_constraintStart_toEndOf="@id/postUserImgCard"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/postUsername"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/postUserText"
-                style="@style/postScreenSubtitle"/>
-
-            <TextView
-                android:id="@+id/postTimestamp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/postTime" />
-
-        </LinearLayout>
-
-        <com.google.android.material.button.MaterialButton
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
-            android:id="@+id/followButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Follow"
-            android:textColor="@color/black"
-            app:iconTint="@color/black"
-            app:strokeColor="@color/black"
-            app:strokeWidth="1dp"
-            app:icon="@drawable/ic_baseline_add_24"
-            app:cornerRadius="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/songPlayerConstraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -101,7 +29,7 @@
         android:padding="16dp"
         android:background="@drawable/player_bg"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/postUserConstraintLayout">
+        app:layout_constraintTop_toBottomOf="@id/navbar">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/songImgCard"

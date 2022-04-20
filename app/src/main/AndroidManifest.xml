@@ -19,6 +19,15 @@
             android:name="edu.neu.madcourse.musicloud.AuthActivity"
             android:exported="false" />
         <activity
+            android:name="edu.neu.madcourse.musicloud.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name="edu.neu.madcourse.musicloud.SignupActivity"
+            android:exported="false" />
+        <activity
+            android:name="edu.neu.madcourse.musicloud.Home"
+            android:exported="false" />
+        <activity
             android:name="edu.neu.madcourse.musicloud.MainActivity"
             android:exported="true">
             <intent-filter>
