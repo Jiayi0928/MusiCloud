@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "edu.neu.madcourse.musicapp",
+  "applicationId": "edu.neu.madcourse.musicloud",
   "variantName": "release",
   "elements": [
     {
