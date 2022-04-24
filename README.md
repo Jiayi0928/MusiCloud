@@ -6,5 +6,5 @@ Team Members:
 | ------------- | ------------- |
 | Jiayi Ma  | https://github.com/Jiayi0928  |
 | Ji Hua  | https://github.com/huaj-todd  |
-| Yu-Hsuan Lin  | https://github.com/yhlinyu  / https://github.com/yhlinn |
+| Yu-Hsuan Lin  | https://github.com/yhlinyu|
 | Xiaoliang Xu  | https://github.com/sherryxlxu  |
