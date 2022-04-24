@@ -1,12 +1,12 @@
 package edu.neu.madcourse.musicloud;
 
-
 public class Song {
     private String title;
     private String artist;
     private String img;
     private String track_uri;
     private String preview;
+
     public Song(String title,String artist,String img,String preview, String track_uri){
         this.title = title;
         this.artist = artist;

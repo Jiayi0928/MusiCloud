@@ -17,9 +17,11 @@ import java.util.ArrayList;
 public class RviewAdapter extends RecyclerView.Adapter<RviewAdapter.ViewHolder> {
     private ArrayList<Song> searchResultsList;
     private ItemClickListener itemClickListener;
+    private User currentUser;
 
-    public RviewAdapter(ArrayList<Song> searchResultsList){
+    public RviewAdapter(ArrayList<Song> searchResultsList, User currentUser){
         this.searchResultsList = searchResultsList;
+        this.currentUser = currentUser;
     }
 
 
@@ -36,7 +38,6 @@ public class RviewAdapter extends RecyclerView.Adapter<RviewAdapter.ViewHolder> 
         holder.title_name.setText(curSong.getTitle());
         Picasso.get().load(curSong.getImg()).into(holder.album_img);
 
-
         holder.title_name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,6 +47,7 @@ public class RviewAdapter extends RecyclerView.Adapter<RviewAdapter.ViewHolder> 
                 intent.putExtra("img",curSong.getImg());
                 intent.putExtra("preview",curSong.getPreview());
                 intent.putExtra("track_uri",curSong.getTrack_uri());
+                intent.putExtra("currentUser", currentUser);
                 view.getContext().startActivity(intent);
             }
         });
@@ -79,7 +81,6 @@ public class RviewAdapter extends RecyclerView.Adapter<RviewAdapter.ViewHolder> 
 
         }
     }
-
 
 
     public interface ItemClickListener{
