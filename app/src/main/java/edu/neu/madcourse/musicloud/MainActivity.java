@@ -29,9 +29,7 @@ import okhttp3.Call;
 
 
 public class MainActivity extends AppCompatActivity {
-
     private static final String TAG = "MainActivity";
-    private User currUser;
 
     private Button startButton;
 

@@ -3,6 +3,7 @@ package edu.neu.madcourse.musicloud;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,13 +26,15 @@ public class Home extends AppCompatActivity {
     private EditText keyword;
 
     private static final String CLIENT_ID = "45b88b6d879642789bb87173c5e0d190";
-    private static final String REDIRECT_URI = "http://myspotify.com/callback";
+    private static final String REDIRECT_URI = "spotify-sdk://auth";
     private SpotifyAppRemote mSpotifyAppRemote;
 
     public static final int AUTH_TOKEN_REQUEST_CODE = 0x10;
     private String mAccessToken;
     private Call mCall;
     TextView nav_title;
+
+    private User currentUser;
 
 
     @Override
@@ -48,6 +51,13 @@ public class Home extends AppCompatActivity {
         keyword = findViewById(R.id.keyword_input);
         Button searchButton = findViewById(R.id.search_button);
         searchButton.setOnClickListener(view -> searchResult(keyword.getText().toString()));
+
+        // Retrieve current user
+        Bundle extras = getIntent().getExtras();
+        if (extras != null && extras.getParcelable("currentUser") != null) {
+            currentUser = extras.getParcelable("currentUser");
+            Log.v("Logged in: ", currentUser.getUsername());
+        }
     }
 
 
@@ -110,6 +120,7 @@ public class Home extends AppCompatActivity {
         Intent intent = new Intent(Home.this, SearchResults.class);
         intent.putExtra("token",mAccessToken);
         intent.putExtra("keyword I need",s);
+        intent.putExtra("currentUser", currentUser);
         startActivity(intent);
     }
 }

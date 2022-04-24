@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 
 
 import org.json.JSONArray;
@@ -31,11 +32,20 @@ public class SearchResults extends AppCompatActivity {
     public static ArrayList<Song> songList = new ArrayList<>();
     private RviewAdapter rviewAdapter;
     private RecyclerView recyclerView;
+    private User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searchresults);
+
+        // Retrieve current user
+        Bundle extras = getIntent().getExtras();
+        if (extras != null && extras.getParcelable("currentUser") != null) {
+            currentUser = extras.getParcelable("currentUser");
+            Log.v("Logged in: ", currentUser.getUsername());
+        }
+
         mAccessToken = getIntent().getExtras().getString("token");
         keyword_i_need = getIntent().getExtras().getString("keyword I need");
         recyclerView = findViewById(R.id.rvSongs);
@@ -76,33 +86,37 @@ public class SearchResults extends AppCompatActivity {
             }
         });
     }
+
     private void createRecyclerView(ArrayList<Song> arr){
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        rviewAdapter = new RviewAdapter(arr);
+        rviewAdapter = new RviewAdapter(arr, currentUser);
         recyclerView.setAdapter(rviewAdapter);
-
     }
+
     private String getImg(JSONObject object)throws JSONException{
         JSONObject album_ob = new JSONObject(object.get("album").toString());
         JSONArray img_arr = new JSONArray(album_ob.get("images").toString());
         JSONObject img_ob = new JSONObject(img_arr.getJSONObject(0).toString());
         return img_ob.get("url").toString();
     }
+
     private String getArtist(JSONObject object) throws JSONException {
         JSONArray artist_arr = new JSONArray(object.get("artists").toString());
         JSONObject artist_ob = new JSONObject(artist_arr.getJSONObject(0).toString());
         return artist_ob.get("name").toString();
     }
+
     private String getURI(JSONObject object) throws JSONException {
         return object.get("uri").toString();
     }
+
     private String getTitle(JSONObject object) throws JSONException {
         return object.get("name").toString();
     }
+
     private String getPreview(JSONObject object) throws JSONException {
         return object.get("preview_url").toString();
     }
-
 
     private void setResponse(final String o1) {
         runOnUiThread(() -> {
