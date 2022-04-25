@@ -9,11 +9,13 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
@@ -22,8 +24,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Date;
+import java.util.Iterator;
 import java.util.Random;
 
+import edu.neu.madcourse.musicloud.PostActivity;
 import edu.neu.madcourse.musicloud.R;
 import edu.neu.madcourse.musicloud.Song;
 
@@ -39,6 +44,9 @@ public class ShakeActivity extends AppCompatActivity implements SensorEventListe
     private Vibrator vibrator;
     private DatabaseReference databaseReference;
     private DatabaseReference postReference;
+    private Date lastShake;
+    private CardView cardView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +54,9 @@ public class ShakeActivity extends AppCompatActivity implements SensorEventListe
         setContentView(R.layout.activity_shake);
 
         imageView = findViewById(R.id.songImg);
+        songTitle =findViewById(R.id.songTitle);
+        songArtist = findViewById(R.id.songArtist);
+        cardView = findViewById(R.id.shakeResult);
         databaseReference = FirebaseDatabase.getInstance().getReference();;
         postReference = databaseReference.child("posts");
 
@@ -64,16 +75,32 @@ public class ShakeActivity extends AppCompatActivity implements SensorEventListe
 
     }
     private void getPost(int num){
-        postReference.orderByChild("commentCnt").startAfter(num).limitToFirst(1).addValueEventListener(new ValueEventListener() {
+        postReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Song song = snapshot.getValue(Song.class);
-                if (song == null){
-                    Log.e("not get",null);
+                Iterator iterator = snapshot.getChildren().iterator();
+                for(int i = 1; i < num; i++){
+                    iterator.next();
                 }
+                DataSnapshot dataSnapshot = (DataSnapshot) iterator.next();
+                Song song = dataSnapshot.getValue(Song.class);
+               Log.e("title",song.getTitle());
                 songTitle.setText(song.getTitle());
                 songArtist.setText(song.getArtist());
                 Glide.with(getApplicationContext()).load(song.getImg()).into(imageView);
+                cardView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(ShakeActivity.this, PostActivity.class);
+                        intent.putExtra("currentUser",DashBoardActivity.currentUser);
+                        intent.putExtra("title",song.getTitle());
+                        intent.putExtra("artist",song.getArtist());
+                        intent.putExtra("img",song.getImg());
+                        intent.putExtra("preview",song.getPreview());
+                        intent.putExtra("track_uri",song.getTrack_uri());
+                        startActivity(intent);
+                    }
+                });
 
             }
 
@@ -129,13 +156,14 @@ public class ShakeActivity extends AppCompatActivity implements SensorEventListe
 
                     }
                 });
-
+                sensorManager.unregisterListener(this);
             }
         }
         lastX = curX;
         lastY = curY;
         lastZ = curZ;
         isNotFirstTime = true;
+
 
 
     }

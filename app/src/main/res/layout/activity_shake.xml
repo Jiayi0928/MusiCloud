@@ -9,6 +9,7 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/shakeResult"
         app:cardCornerRadius="1dp"
         app:cardUseCompatPadding="true"
         app:layout_constraintDimensionRatio="1"

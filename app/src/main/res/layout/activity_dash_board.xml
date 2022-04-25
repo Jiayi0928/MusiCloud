@@ -53,7 +53,7 @@
             android:layout_below="@id/dashboardTitle"
             android:layout_marginTop="6dp"
             android:text="@android:string/unknownName"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="14sp" />
 
         <Button

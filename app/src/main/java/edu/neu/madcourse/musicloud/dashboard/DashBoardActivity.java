@@ -31,7 +31,7 @@ public class DashBoardActivity extends AppCompatActivity {
     private ViewPager2 viewPager2;
     private ViewAdapter viewAdapter;
     private FragmentContainerView fragmentContainerView;
-    private  final String[] tabName = {"Posts","Likes"};
+    private  final String[] tabName = {"Comments","Likes"};
     private final Integer CONTENT_ID=1;
     private ShakeActivity shakeActivity;
     private TextView name;
