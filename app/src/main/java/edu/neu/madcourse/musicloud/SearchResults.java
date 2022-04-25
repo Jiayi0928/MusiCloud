@@ -4,8 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 
 import org.json.JSONArray;
@@ -15,6 +19,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import edu.neu.madcourse.musicloud.dashboard.DashBoardActivity;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -33,11 +38,23 @@ public class SearchResults extends AppCompatActivity {
     private RviewAdapter rviewAdapter;
     private RecyclerView recyclerView;
     private User currentUser;
-
+    private RelativeLayout navBarLayout;
+    private ImageView navBarUserAvatar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searchresults);
+        navBarLayout = (RelativeLayout) findViewById(R.id.navbar);
+        navBarUserAvatar = navBarLayout.findViewById(R.id.navUserAvatar);
+
+        navBarUserAvatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SearchResults.this, DashBoardActivity.class);
+                intent.putExtra("currentUser",currentUser);
+                startActivity(intent);;
+            }
+        });
 
         // Retrieve current user
         Bundle extras = getIntent().getExtras();

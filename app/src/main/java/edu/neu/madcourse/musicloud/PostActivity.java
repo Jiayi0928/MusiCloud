@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.media.AudioAttributes;
@@ -43,6 +44,7 @@ import java.util.Date;
 
 import edu.neu.madcourse.musicloud.comments.Comment;
 import edu.neu.madcourse.musicloud.comments.RecyclerViewAdapter;
+import edu.neu.madcourse.musicloud.dashboard.DashBoardActivity;
 
 public class PostActivity extends AppCompatActivity {
     private final static String TAG = "PostActivity";
@@ -110,9 +112,10 @@ public class PostActivity extends AppCompatActivity {
         navBarUserAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: start user dashboard activity, pass currUser
+                startActivity(new Intent(PostActivity.this, DashBoardActivity.class));
             }
         });
+
 
         // Handle posting comments
         commentInputLayout.setEndIconOnClickListener(new View.OnClickListener() {
@@ -131,7 +134,12 @@ public class PostActivity extends AppCompatActivity {
         });
 
         // Retrieve song data and user, set currSong and currUser
+//        Bundle extras = getIntent().getExtras();
         Bundle extras = getIntent().getExtras();
+//        if (extras != null && extras.getParcelable("postId") != null) {
+//            postId = extras.getParcelable("postId");
+//
+//        }
         if (extras != null) {
             String title = extras.getString("title");
             String artist = extras.getString("artist");
@@ -304,10 +312,12 @@ public class PostActivity extends AppCompatActivity {
      * Add the new post into DB, initialize likeCnt and commentCnt to 0.
      */
     private void initPost() {
-        postDbReference.child("title").setValue(currSong.getTitle());
-        postDbReference.child("artist").setValue(currSong.getArtist());
-        postDbReference.child("image").setValue(currSong.getImg());
-        postDbReference.child("preview").setValue(currSong.getPreview());
+//        postDbReference.child("title").setValue(currSong.getTitle());
+//        postDbReference.child("artist").setValue(currSong.getArtist());
+//        postDbReference.child("image").setValue(currSong.getImg());
+//        postDbReference.child("preview").setValue(currSong.getPreview());
+//        postDbReference.child("track_uri").setValue(currSong.getTrack_uri());
+        postDbReference.setValue(currSong);
         postDbReference.child("likeCnt").setValue(0);
         postDbReference.child("commentCnt").setValue(0);
     }

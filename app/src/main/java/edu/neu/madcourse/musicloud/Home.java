@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +19,7 @@ import com.spotify.sdk.android.auth.AuthorizationClient;
 import com.spotify.sdk.android.auth.AuthorizationRequest;
 import com.spotify.sdk.android.auth.AuthorizationResponse;
 
+import edu.neu.madcourse.musicloud.dashboard.DashBoardActivity;
 import okhttp3.Call;
 
 
@@ -35,12 +38,26 @@ public class Home extends AppCompatActivity {
     TextView nav_title;
 
     private User currentUser;
+    private RelativeLayout navBarLayout;
+    private ImageView navBarUserAvatar;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        navBarLayout = (RelativeLayout) findViewById(R.id.navbar);
+        navBarUserAvatar = navBarLayout.findViewById(R.id.navUserAvatar);
+        navBarUserAvatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Home.this, DashBoardActivity.class);
+                intent.putExtra("currentUser",currentUser);
+                startActivity(intent);
+
+            }
+        });
         nav_title =findViewById(R.id.navTitle);
         nav_title.setText("HOME");
 
