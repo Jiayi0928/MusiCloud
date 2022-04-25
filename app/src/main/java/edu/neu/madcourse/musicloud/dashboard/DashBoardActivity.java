@@ -36,6 +36,7 @@ public class DashBoardActivity extends AppCompatActivity {
     private ShakeActivity shakeActivity;
     private TextView name;
     protected static User currentUser;
+    private RelativeLayout relativeLayout;
 
 
 //    private ArrayList<Posts> postsArrayList;
@@ -53,7 +54,8 @@ public class DashBoardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dash_board);
 
         shake=(Button) findViewById(R.id.shaky);
-        name = (TextView)findViewById(R.id.nickName);
+        relativeLayout= findViewById(R.id.dashboardHead);
+        name = relativeLayout.findViewById(R.id.nickName);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null && extras.getParcelable("currentUser") != null) {

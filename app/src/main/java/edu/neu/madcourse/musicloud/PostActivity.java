@@ -1,5 +1,6 @@
 package edu.neu.madcourse.musicloud;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -89,6 +90,8 @@ public class PostActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
+
+
 
         // Bind views and set on click listeners
         navBarLayout = (RelativeLayout) findViewById(R.id.navbar);
@@ -295,6 +298,7 @@ public class PostActivity extends AppCompatActivity {
     }
 
 
+
     /**
      * Set up RecyclerView for comments, located at the bottom of the Topic Screen.
      */
@@ -411,6 +415,9 @@ public class PostActivity extends AppCompatActivity {
     @Override
     public void onBackPressed(){
         mediaPlayer.stop();
+        Intent intent = new Intent(PostActivity.this,Home.class);
+        intent.putExtra("currentUser",currentUser);
+        startActivity(intent);
         this.finish();
     }
 
