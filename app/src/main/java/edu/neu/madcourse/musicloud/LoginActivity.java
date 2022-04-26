@@ -99,7 +99,8 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "User does not exist!", Toast.LENGTH_LONG).show();
                 } else {
                     User currentUser = snapshot.child(username).getValue(User.class);
-                    Intent intent = new Intent(LoginActivity.this, Home.class);
+                    //Intent intent = new Intent(LoginActivity.this, Home.class);
+                    Intent intent =new Intent(LoginActivity.this,HomeScreenActivity.class);
                     intent.putExtra("currentUser", currentUser);
                     startActivity(intent);
                 }

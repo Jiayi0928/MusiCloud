@@ -80,7 +80,9 @@ public class Home extends AppCompatActivity {
         final AuthorizationResponse response = AuthorizationClient.getResponse(resultCode, data);
 
         if (requestCode == AUTH_TOKEN_REQUEST_CODE) {
-            mAccessToken = response.getAccessToken();
+            //mAccessToken = response.getAccessToken();
+
+            mAccessToken = getIntent().getExtras().getString("token");
             //Toast.makeText(getApplication(),mAccessToken, Toast.LENGTH_SHORT).show();
         }
     }
