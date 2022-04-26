@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.database.DatabaseReference;
 import com.spotify.android.appremote.api.SpotifyAppRemote;
 import com.spotify.sdk.android.auth.AuthorizationClient;
@@ -40,6 +41,7 @@ public class Home extends AppCompatActivity {
     private User currentUser;
     private RelativeLayout navBarLayout;
     private ImageView navBarUserAvatar;
+
 
 
     @Override
@@ -75,6 +77,7 @@ public class Home extends AppCompatActivity {
             currentUser = extras.getParcelable("currentUser");
             Log.v("Logged in: ", currentUser.getUsername());
         }
+        Glide.with(getApplicationContext()).load(currentUser.getProfileImage()).into(navBarUserAvatar);
     }
 
 

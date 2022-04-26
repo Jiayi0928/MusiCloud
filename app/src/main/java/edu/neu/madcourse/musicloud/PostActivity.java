@@ -160,6 +160,7 @@ public class PostActivity extends AppCompatActivity {
         songTitle.setText(currSong.getTitle());
         songArtist.setText(currSong.getArtist());
         Glide.with(getApplicationContext()).load(currSong.getImg()).into(songImage);
+        Glide.with(getApplicationContext()).load(currentUser.getUsername()).into(navBarUserAvatar);
 
         // Initialize empty comments list and create RecyclerView
         commentsList = new ArrayList<>();

@@ -52,6 +52,7 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
         holder.subContent.setText(post.getArtist());
 //        Glide.with(holder.imageView.getContext()).load(post.getImage()).into(holder.imageView);
 //        Log.d("ImageUrl",post.getImage());
+        Log.e("img",post.getImg());
         Picasso.get().load(post.getImg()).into(holder.imageView);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
