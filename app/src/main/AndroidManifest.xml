@@ -16,6 +16,9 @@
         android:theme="@style/Theme.MusicApp">
 
         <activity
+            android:name="edu.neu.madcourse.musicloud.HomeScreenActivity"
+            android:exported="false"/>
+        <activity
             android:name="edu.neu.madcourse.musicloud.dashboard.ShakeActivity"
             android:exported="false" />
         <activity
