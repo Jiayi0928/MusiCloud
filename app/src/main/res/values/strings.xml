@@ -23,4 +23,7 @@
     <string name="switchToLoginHelperLink">Log in</string>
     <string name="my_dashboard">My Dashboard</string>
     <string name="loading">Loading</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="search">Search Song</string>
+    <string name="log_out">Log Out</string>
 </resources>

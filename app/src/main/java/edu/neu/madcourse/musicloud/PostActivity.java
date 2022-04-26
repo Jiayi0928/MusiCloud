@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -16,6 +17,9 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -84,6 +88,7 @@ public class PostActivity extends AppCompatActivity {
     private TextInputLayout commentInputLayout;
     private TextInputEditText commentInput;
     private MediaPlayer mediaPlayer;
+    private ImageView menu;
 
 
     @Override
@@ -96,6 +101,8 @@ public class PostActivity extends AppCompatActivity {
         // Bind views and set on click listeners
         navBarLayout = (RelativeLayout) findViewById(R.id.navbar);
         navBarUserAvatar = navBarLayout.findViewById(R.id.navUserAvatar);
+//        menu = navBarLayout.findViewById(R.id.navMenu);
+
         navBarTitle = navBarLayout.findViewById(R.id.navTitle);
         navBarTitle.setText("POST");
 
@@ -118,6 +125,8 @@ public class PostActivity extends AppCompatActivity {
                 startActivity(new Intent(PostActivity.this, DashBoardActivity.class));
             }
         });
+
+
 
 
         // Handle posting comments
@@ -160,7 +169,7 @@ public class PostActivity extends AppCompatActivity {
         songTitle.setText(currSong.getTitle());
         songArtist.setText(currSong.getArtist());
         Glide.with(getApplicationContext()).load(currSong.getImg()).into(songImage);
-        Glide.with(getApplicationContext()).load(currentUser.getUsername()).into(navBarUserAvatar);
+        Glide.with(getApplicationContext()).load(currentUser.getProfileImage()).into(navBarUserAvatar);
 
         // Initialize empty comments list and create RecyclerView
         commentsList = new ArrayList<>();
@@ -322,6 +331,7 @@ public class PostActivity extends AppCompatActivity {
 //        postDbReference.child("image").setValue(currSong.getImg());
 //        postDbReference.child("preview").setValue(currSong.getPreview());
 //        postDbReference.child("track_uri").setValue(currSong.getTrack_uri());
+        postDbReference.setValue(currentUser);
         postDbReference.setValue(currSong);
         postDbReference.child("likeCnt").setValue(0);
         postDbReference.child("commentCnt").setValue(0);
@@ -412,6 +422,31 @@ public class PostActivity extends AppCompatActivity {
         });
     }
 
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.menu_res,menu);
+//        return true;
+//    }
+//
+//
+//
+//    @SuppressLint("NonConstantResourceId")
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        switch (item.getItemId()){
+//            case R.id.nav_dashboard:
+//                startActivity(new Intent(this,DashBoardActivity.class));
+//                return true;
+//            case R.id.nav_search:
+//            case R.id.nav_logout:
+//                return true;
+//
+//            default:
+//                return super.onOptionsItemSelected(item);
+//
+//        }
+//    }
 
     @Override
     public void onBackPressed(){

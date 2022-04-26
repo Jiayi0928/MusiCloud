@@ -24,6 +24,8 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.bumptech.glide.Glide;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 
@@ -47,6 +49,8 @@ public class DashBoardActivity extends AppCompatActivity {
     private RelativeLayout relativeLayout;
     private static final int IMAGE = 1;
     private Uri imageUri;
+    private DatabaseReference databaseReference;
+    private DatabaseReference userDatabase;
 
 
 //    private ArrayList<Posts> postsArrayList;
@@ -83,6 +87,9 @@ public class DashBoardActivity extends AppCompatActivity {
 
             }
         });
+
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        userDatabase = databaseReference.child("users").child(currentUser.getUsername()).child("profileImage");
         avatar = (ImageView) findViewById(R.id.navUserAvatar);
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
 
@@ -135,6 +142,7 @@ public class DashBoardActivity extends AppCompatActivity {
         if(requestCode == IMAGE && resultCode == RESULT_OK){
             imageUri = data.getData();
             currentUser.setProfileImage(String.valueOf(imageUri));
+            userDatabase.setValue(String.valueOf(imageUri));
             Glide.with(DashBoardActivity.this).load(imageUri).into(avatar);
         }
     }
