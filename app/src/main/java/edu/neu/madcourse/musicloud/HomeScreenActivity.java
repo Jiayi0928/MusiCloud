@@ -101,9 +101,8 @@ public class HomeScreenActivity extends AppCompatActivity {
         artist3 = findViewById(R.id.HSArtist3);
 
         currentUser = getIntent().getExtras().getParcelable("currentUser");
-
         test = findViewById(R.id.textViewTest001);
-        test.setText(currentUser.username);
+        test.setText("Hello! "+ currentUser.getUsername()+ " !");
 
         final AuthorizationRequest request = getAuthenticationRequest(AuthorizationResponse.Type.TOKEN);
         AuthorizationClient.openLoginActivity(this, AUTH_TOKEN_REQUEST_CODE, request);
