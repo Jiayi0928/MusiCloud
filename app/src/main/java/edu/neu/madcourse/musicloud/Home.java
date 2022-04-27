@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -69,7 +70,9 @@ public class Home extends AppCompatActivity {
 
         keyword = findViewById(R.id.keyword_input);
         Button searchButton = findViewById(R.id.search_button);
-        searchButton.setOnClickListener(view -> searchResult(keyword.getText().toString()));
+        searchButton.setOnClickListener(view -> {
+            searchResult(keyword.getText().toString());
+        });
 
         // Retrieve current user
         Bundle extras = getIntent().getExtras();
@@ -137,6 +140,7 @@ public class Home extends AppCompatActivity {
      */
 
     private void searchResult(String s){
+
         Intent intent = new Intent(Home.this, SearchResults.class);
         intent.putExtra("token",mAccessToken);
         intent.putExtra("keyword I need",s);

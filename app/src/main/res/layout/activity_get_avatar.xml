@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".dashboard.GetAvatar">
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/navUserAvatarCard"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        app:cardCornerRadius="30dp"
+        app:strokeColor="@color/dark_gray"
+        app:strokeWidth="2dp">
+
+        <ImageView
+            android:id="@+id/navUserAvatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/anon"
+            tools:layout_conversion_absoluteHeight="60dp"
+            tools:layout_conversion_absoluteWidth="60dp"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <Button
+        android:id="@+id/camera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/navUserAvatarCard"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/fjalla_one"
+        android:layout_centerHorizontal="true"
+        android:text="Camera" />
+
+    <Button
+        android:id="@+id/gallery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/navUserAvatarCard"
+        android:layout_alignRight="@id/camera"
+        android:layout_marginTop="147dp"
+        android:fontFamily="@font/fjalla_one"
+        android:text="Gallery" />
+
+
+</android.widget.RelativeLayout>

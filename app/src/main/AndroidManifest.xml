@@ -4,7 +4,6 @@
     package="edu.neu.madcourse.musicloud">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
@@ -14,30 +13,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MusicApp">
-
         <activity
-            android:name="edu.neu.madcourse.musicloud.dashboard.ShakeActivity"
+            android:name=".dashboard.GetAvatar"
             android:exported="false" />
         <activity
-            android:name="edu.neu.madcourse.musicloud.dashboard.DashBoardActivity"
+            android:name=".dashboard.ShakeActivity"
             android:exported="false" />
         <activity
-            android:name="edu.neu.madcourse.musicloud.PostActivity"
+            android:name=".dashboard.DashBoardActivity"
             android:exported="false" />
         <activity
-            android:name="edu.neu.madcourse.musicloud.SearchResults"
+            android:name=".PostActivity"
             android:exported="false" />
         <activity
-            android:name="edu.neu.madcourse.musicloud.LoginActivity"
+            android:name=".SearchResults"
             android:exported="false" />
         <activity
-            android:name="edu.neu.madcourse.musicloud.SignupActivity"
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name="edu.neu.madcourse.musicloud.Home"
+            android:name=".SignupActivity"
             android:exported="false" />
         <activity
-            android:name="edu.neu.madcourse.musicloud.MainActivity"
+            android:name=".Home"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,6 +46,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
