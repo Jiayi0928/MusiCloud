@@ -77,6 +77,7 @@ public class PostActivity extends AppCompatActivity {
     // Views
     private RelativeLayout navBarLayout;
     private ImageView navBarUserAvatar;
+    private ImageView navBarHome;
     private TextView navBarTitle;
     private ImageView songImage;
     private TextView songTitle;
@@ -88,23 +89,26 @@ public class PostActivity extends AppCompatActivity {
     private TextInputLayout commentInputLayout;
     private TextInputEditText commentInput;
     private MediaPlayer mediaPlayer;
-    private ImageView menu;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
 
-
-
         // Bind views and set on click listeners
         navBarLayout = (RelativeLayout) findViewById(R.id.navbar);
         navBarUserAvatar = navBarLayout.findViewById(R.id.navUserAvatar);
-
-
+        navBarHome = navBarLayout.findViewById(R.id.navMenu);
         navBarTitle = navBarLayout.findViewById(R.id.navTitle);
         navBarTitle.setText("POST");
+        navBarHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PostActivity.this, HomeScreenActivity.class);
+                intent.putExtra("currentUser", currentUser);
+                startActivity(intent);
+            }
+        });
 
         songImage = findViewById(R.id.songImg);
         songTitle = findViewById(R.id.songTitle);
@@ -117,11 +121,6 @@ public class PostActivity extends AppCompatActivity {
         commentSectionCnt = findViewById(R.id.commentsCnt);
         commentInputLayout = findViewById(R.id.commentsInputLayout);
         commentInput = findViewById(R.id.commentsInput);
-
-
-
-
-
 
         // Handle posting comments
         commentInputLayout.setEndIconOnClickListener(new View.OnClickListener() {
@@ -158,6 +157,7 @@ public class PostActivity extends AppCompatActivity {
             currentUser = extras.getParcelable("currentUser");
             Log.v("Logged in:", currentUser.getUsername());
         }
+
         // Navigate to user dashboard
         navBarUserAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
