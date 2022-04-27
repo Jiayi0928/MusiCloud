@@ -109,13 +109,13 @@ public class DashBoardActivity extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
 
         avatar.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent();
-//                intent.setType("image/*");
-//                intent.setAction(Intent.ACTION_GET_CONTENT);
-//                startActivityForResult(Intent.createChooser(intent,"Select Photo"),IMAGE);
-//            }
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent,"Select Photo"),IMAGE);
+            }
 
         });
 
@@ -152,14 +152,14 @@ public class DashBoardActivity extends AppCompatActivity {
 
     }
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if(requestCode == IMAGE && resultCode == RESULT_OK){
-//            imageUri = data.getData();
-//            currentUser.setProfileImage(String.valueOf(imageUri));
-//            userDatabase.setValue(String.valueOf(imageUri));
-//            Glide.with(DashBoardActivity.this).load(imageUri).into(avatar);
-//        }
-//    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == IMAGE && resultCode == RESULT_OK){
+            imageUri = data.getData();
+            currentUser.setProfileImage(String.valueOf(imageUri));
+            userDatabase.setValue(String.valueOf(imageUri));
+            Glide.with(DashBoardActivity.this).load(imageUri).into(avatar);
+        }
+    }
 }

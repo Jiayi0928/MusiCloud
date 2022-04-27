@@ -4,33 +4,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <Button
-        android:id="@+id/buttonTest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="search"
-        app:layout_constraintEnd_toEndOf="parent"
+    <include layout="@layout/navbar"
+        android:id="@+id/navbar"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTest001" />
+        app:layout_constraintEnd_toEndOf="parent"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/search_layout"
+        app:layout_constraintTop_toBottomOf="@id/textViewTest001"
+        android:layout_marginTop="10dp"
+        tools:context=".Home">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/keyword_input"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Search Artists, songs"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintVertical_bias="0.037" />
+
+        <Button
+            android:id="@+id/search_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/fjalla_one"
+            android:text="Search"
+            app:layout_constraintBottom_toBottomOf="@+id/keyword_input"
+            app:layout_constraintEnd_toEndOf="@+id/keyword_input"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/keyword_input"
+            app:layout_constraintTop_toTopOf="@+id/keyword_input"
+            app:layout_constraintVertical_bias="0.0" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
     <TextView
         android:id="@+id/HSquickpost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="Quick_Post"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonTest"
-        tools:ignore="TextContrastCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/search_layout"
+        tools:ignore="TextContrastCheck"
+        tools:layout_editor_absoluteY="265dp" />
 
     <HorizontalScrollView
         android:id="@+id/horonztalScrollView1"
         android:layout_width="375dp"
-        android:layout_height="254dp"
+        android:layout_height="200dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/HSquickpost"
@@ -137,12 +168,12 @@
         android:id="@+id/textViewTest001"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="16dp"
         android:text="TextView"
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/navbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

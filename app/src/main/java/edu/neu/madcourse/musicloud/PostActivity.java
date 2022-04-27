@@ -451,9 +451,10 @@ public class PostActivity extends AppCompatActivity {
     @Override
     public void onBackPressed(){
         mediaPlayer.stop();
-        Intent intent = new Intent(PostActivity.this,Home.class);
-        intent.putExtra("currentUser",currentUser);
-        startActivity(intent);
+//        Intent intent = new Intent(PostActivity.this,Home.class);
+//        intent.putExtra("currentUser",currentUser);
+//        startActivity(intent);
+        startActivity(new Intent(getApplicationContext(),HomeScreenActivity.class).putExtra("currentUser",currentUser));
         this.finish();
     }
 

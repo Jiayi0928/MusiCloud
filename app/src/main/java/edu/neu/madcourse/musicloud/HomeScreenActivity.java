@@ -80,16 +80,16 @@ public class HomeScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homescreen);
-        searchBtn = findViewById(R.id.buttonTest);
-        searchBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // Code here executes on main thread after user presses button
-                Intent i = new Intent(HomeScreenActivity.this, Home.class);
-                i.putExtra("token",mAccessToken);
-                i.putExtra("currentUser", currentUser);
-                startActivity(i);
-            }
-        });
+//        searchBtn = findViewById(R.id.buttonTest);
+//        searchBtn.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                // Code here executes on main thread after user presses button
+//                Intent i = new Intent(HomeScreenActivity.this, Home.class);
+//                i.putExtra("token",mAccessToken);
+//                i.putExtra("currentUser", currentUser);
+//                startActivity(i);
+//            }
+//        });
         imageButton1 = findViewById(R.id.HSimageButton1);
         imageButton2 = findViewById(R.id.HSimageButton2);
         imageButton3 = findViewById(R.id.HSimageButton3);
@@ -101,8 +101,9 @@ public class HomeScreenActivity extends AppCompatActivity {
         artist3 = findViewById(R.id.HSArtist3);
 
         currentUser = getIntent().getExtras().getParcelable("currentUser");
+
         test = findViewById(R.id.textViewTest001);
-        test.setText("Hello! "+ currentUser.getUsername()+ " !");
+        test.setText(currentUser.username);
 
         final AuthorizationRequest request = getAuthenticationRequest(AuthorizationResponse.Type.TOKEN);
         AuthorizationClient.openLoginActivity(this, AUTH_TOKEN_REQUEST_CODE, request);

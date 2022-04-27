@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 
+import com.bumptech.glide.Glide;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -55,6 +57,7 @@ public class SearchResults extends AppCompatActivity {
                 startActivity(intent);;
             }
         });
+        Glide.with(getApplicationContext()).load(currentUser.getProfileImage()).into(navBarUserAvatar);
 
         // Retrieve current user
         Bundle extras = getIntent().getExtras();

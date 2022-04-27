@@ -80,7 +80,7 @@ public class Home extends AppCompatActivity {
             currentUser = extras.getParcelable("currentUser");
             Log.v("Logged in: ", currentUser.getUsername());
         }
-        Glide.with(getApplicationContext()).load(currentUser.getProfileImage()).into(navBarUserAvatar);
+//        Glide.with(getApplicationContext()).load(currentUser.getProfileImage()).into(navBarUserAvatar);
     }
 
 
