@@ -13,6 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MusicApp">
+        <activity android:name=".HomeScreenActivity"
+            android:exported="false"/>
         <activity
             android:name=".dashboard.GetAvatar"
             android:exported="false" />
