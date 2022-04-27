@@ -369,7 +369,11 @@ public class HomeScreenActivity extends AppCompatActivity {
         intent.putExtra("token",mAccessToken);
         intent.putExtra("keyword I need",s);
         intent.putExtra("currentUser", currentUser);
-        startActivity(intent);
+        if(s.equals("")){
+            Toast.makeText(getApplicationContext(),
+                    "Please enter something", Toast.LENGTH_SHORT).show();
+        }else{
+        startActivity(intent);}
     }
 
 }

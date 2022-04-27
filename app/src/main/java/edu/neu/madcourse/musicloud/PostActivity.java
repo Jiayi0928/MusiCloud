@@ -451,15 +451,15 @@ public class PostActivity extends AppCompatActivity {
 //        }
 //    }
 
-    @Override
-    public void onBackPressed(){
-        mediaPlayer.stop();
-//        Intent intent = new Intent(PostActivity.this,Home.class);
-//        intent;
-//        startActivity(intent);
-        startActivity(new Intent(getApplicationContext(),HomeScreenActivity.class).putExtra("currentUser",currentUser));
-        this.finish();
-    }
+//    @Override
+//    public void onBackPressed(){
+//        mediaPlayer.stop();
+////        Intent intent = new Intent(PostActivity.this,Home.class);
+////        intent;
+////        startActivity(intent);
+//        startActivity(new Intent(getApplicationContext(),HomeScreenActivity.class).putExtra("currentUser",currentUser));
+//        this.finish();
+//    }
 
     @Override
     protected void onDestroy() {
