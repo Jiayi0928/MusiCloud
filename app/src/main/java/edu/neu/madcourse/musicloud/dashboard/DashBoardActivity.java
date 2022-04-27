@@ -51,8 +51,7 @@ public class DashBoardActivity extends AppCompatActivity {
     private TextView name;
     protected static User currentUser;
     private RelativeLayout relativeLayout;
-    private static final int IMAGE = 1;
-    private Uri imageUri;
+
     private DatabaseReference databaseReference;
     private DatabaseReference userDatabase;
 
@@ -111,10 +110,9 @@ public class DashBoardActivity extends AppCompatActivity {
         avatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent,"Select Photo"),IMAGE);
+                Intent intent = new Intent(getApplicationContext(),GetAvatar.class);
+                intent.putExtra("currentUser",currentUser);
+                startActivity(intent);
             }
 
         });
@@ -152,14 +150,5 @@ public class DashBoardActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == IMAGE && resultCode == RESULT_OK){
-            imageUri = data.getData();
-            currentUser.setProfileImage(String.valueOf(imageUri));
-            userDatabase.setValue(String.valueOf(imageUri));
-            Glide.with(DashBoardActivity.this).load(imageUri).into(avatar);
-        }
-    }
+
 }

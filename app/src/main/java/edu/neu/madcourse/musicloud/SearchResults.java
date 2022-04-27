@@ -57,7 +57,6 @@ public class SearchResults extends AppCompatActivity {
                 startActivity(intent);;
             }
         });
-        Glide.with(getApplicationContext()).load(currentUser.getProfileImage()).into(navBarUserAvatar);
 
         // Retrieve current user
         Bundle extras = getIntent().getExtras();
@@ -65,6 +64,7 @@ public class SearchResults extends AppCompatActivity {
             currentUser = extras.getParcelable("currentUser");
             Log.v("Logged in: ", currentUser.getUsername());
         }
+        Glide.with(getApplicationContext()).load(currentUser.getProfileImage()).into(navBarUserAvatar);
 
         mAccessToken = getIntent().getExtras().getString("token");
         keyword_i_need = getIntent().getExtras().getString("keyword I need");

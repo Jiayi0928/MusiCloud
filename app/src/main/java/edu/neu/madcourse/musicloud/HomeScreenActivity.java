@@ -7,13 +7,17 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+import com.google.firebase.database.DatabaseReference;
 import com.spotify.android.appremote.api.ConnectionParams;
 import com.spotify.android.appremote.api.Connector;
 import com.spotify.android.appremote.api.SpotifyAppRemote;
@@ -36,6 +40,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Random;
 
+import edu.neu.madcourse.musicloud.dashboard.DashBoardActivity;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -57,6 +62,10 @@ public class HomeScreenActivity extends AppCompatActivity {
     private String mAccessToken;
     private String mAccessToken2;
     private Call mCall;
+    private EditText keyword;
+    private RelativeLayout navBarLayout;
+    private ImageView navBarUserAvatar;
+    private TextView navBarTitle;
 
 
     User currentUser;
@@ -80,16 +89,30 @@ public class HomeScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homescreen);
-//        searchBtn = findViewById(R.id.buttonTest);
-//        searchBtn.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                // Code here executes on main thread after user presses button
-//                Intent i = new Intent(HomeScreenActivity.this, Home.class);
-//                i.putExtra("token",mAccessToken);
-//                i.putExtra("currentUser", currentUser);
-//                startActivity(i);
-//            }
-//        });
+        navBarLayout = (RelativeLayout) findViewById(R.id.navbar);
+        navBarUserAvatar = navBarLayout.findViewById(R.id.navUserAvatar);
+        currentUser = getIntent().getExtras().getParcelable("currentUser");
+        Glide.with(getApplicationContext()).load(currentUser.getProfileImage()).into(navBarUserAvatar);
+        navBarLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeScreenActivity.this, DashBoardActivity.class);
+                intent.putExtra("currentUser",currentUser);
+                startActivity(intent);
+            }
+        });
+
+        navBarTitle = navBarLayout.findViewById(R.id.navTitle);
+        navBarTitle.setText("HOME");
+        keyword = findViewById(R.id.keyword_input);
+        searchBtn = findViewById(R.id.search_button);
+        searchBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Code here executes on main thread after user presses button
+                Log.e("input",keyword.getText().toString());
+                searchResult(keyword.getText().toString());
+            }
+        });
         imageButton1 = findViewById(R.id.HSimageButton1);
         imageButton2 = findViewById(R.id.HSimageButton2);
         imageButton3 = findViewById(R.id.HSimageButton3);
@@ -100,7 +123,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         artist2 = findViewById(R.id.HSArtist2);
         artist3 = findViewById(R.id.HSArtist3);
 
-        currentUser = getIntent().getExtras().getParcelable("currentUser");
+
 
         test = findViewById(R.id.textViewTest001);
         test.setText(currentUser.username);
@@ -339,6 +362,14 @@ public class HomeScreenActivity extends AppCompatActivity {
     }
     private Uri getRedirectUri() {
         return Uri.parse(REDIRECT_URI);
+    }
+    private void searchResult(String s){
+
+        Intent intent = new Intent(HomeScreenActivity.this, SearchResults.class);
+        intent.putExtra("token",mAccessToken);
+        intent.putExtra("keyword I need",s);
+        intent.putExtra("currentUser", currentUser);
+        startActivity(intent);
     }
 
 }

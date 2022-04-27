@@ -101,7 +101,7 @@ public class PostActivity extends AppCompatActivity {
         // Bind views and set on click listeners
         navBarLayout = (RelativeLayout) findViewById(R.id.navbar);
         navBarUserAvatar = navBarLayout.findViewById(R.id.navUserAvatar);
-//        menu = navBarLayout.findViewById(R.id.navMenu);
+
 
         navBarTitle = navBarLayout.findViewById(R.id.navTitle);
         navBarTitle.setText("POST");
@@ -118,13 +118,7 @@ public class PostActivity extends AppCompatActivity {
         commentInputLayout = findViewById(R.id.commentsInputLayout);
         commentInput = findViewById(R.id.commentsInput);
 
-        // Navigate to user dashboard
-        navBarUserAvatar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(PostActivity.this, DashBoardActivity.class));
-            }
-        });
+
 
 
 
@@ -164,6 +158,15 @@ public class PostActivity extends AppCompatActivity {
             currentUser = extras.getParcelable("currentUser");
             Log.v("Logged in:", currentUser.getUsername());
         }
+        // Navigate to user dashboard
+        navBarUserAvatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PostActivity.this, DashBoardActivity.class);
+                intent.putExtra("currentUser",currentUser);
+                startActivity(intent);
+            }
+        });
 
         // Set static data
         songTitle.setText(currSong.getTitle());
@@ -452,7 +455,7 @@ public class PostActivity extends AppCompatActivity {
     public void onBackPressed(){
         mediaPlayer.stop();
 //        Intent intent = new Intent(PostActivity.this,Home.class);
-//        intent.putExtra("currentUser",currentUser);
+//        intent;
 //        startActivity(intent);
         startActivity(new Intent(getApplicationContext(),HomeScreenActivity.class).putExtra("currentUser",currentUser));
         this.finish();
