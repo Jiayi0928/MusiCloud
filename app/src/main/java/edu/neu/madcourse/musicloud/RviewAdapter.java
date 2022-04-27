@@ -24,7 +24,6 @@ public class RviewAdapter extends RecyclerView.Adapter<RviewAdapter.ViewHolder> 
         this.currentUser = currentUser;
     }
 
-
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item,parent,false);
