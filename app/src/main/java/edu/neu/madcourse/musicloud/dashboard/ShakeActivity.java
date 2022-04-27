@@ -87,6 +87,7 @@ public class ShakeActivity extends AppCompatActivity implements SensorEventListe
                Log.e("title",song.getTitle());
                 songTitle.setText(song.getTitle());
                 songArtist.setText(song.getArtist());
+                Log.e("img",String.valueOf(song.getImg()));
                 Glide.with(getApplicationContext()).load(song.getImg()).into(imageView);
                 cardView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -140,7 +141,7 @@ public class ShakeActivity extends AppCompatActivity implements SensorEventListe
             difZ = Math.abs(curZ -  lastZ);
 
             if((difX > threshold && difY > threshold)||(difX > threshold && difZ>threshold)||(difY>threshold && difZ >threshold)){
-               vibrator.vibrate(500);
+               vibrator.vibrate(1000);
                 postReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
