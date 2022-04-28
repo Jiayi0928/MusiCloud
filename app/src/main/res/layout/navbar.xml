@@ -22,12 +22,12 @@
             android:id="@+id/navTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_marginStart="16dp"
             android:layout_toEndOf="@id/navMenu"
-            android:layout_centerVertical="true"
+            android:fontFamily="@font/fjalla_one"
             android:text="SEARCH RESULTS"
-            android:textSize="20dp"
-            android:fontFamily="@font/fjalla_one" />
+            android:textSize="20dp" />
 
 
         <com.google.android.material.card.MaterialCardView
