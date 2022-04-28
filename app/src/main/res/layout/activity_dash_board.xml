@@ -9,22 +9,13 @@
     android:orientation="vertical"
     tools:context=".dashboard.DashBoardActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/navbar2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white">
-
-
-    </androidx.appcompat.widget.Toolbar>
-
 
     <RelativeLayout
         android:id="@+id/dashboardHead"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/navbar2"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="20dp">
 
         <com.google.android.material.card.MaterialCardView
@@ -112,20 +103,10 @@
 
     </androidx.viewpager2.widget.ViewPager2>
 
-    <RelativeLayout
-        android:layout_width="673dp"
-        android:layout_height="wrap_content"
-        android:padding="16dp">
-
-        <ImageView
-            android:id="@+id/navMenu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_baseline_home_24" />
 
 
-    </RelativeLayout>
+
+
 
 
 </RelativeLayout>
