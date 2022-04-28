@@ -56,10 +56,6 @@ public class DashBoardActivity extends AppCompatActivity {
     private DatabaseReference userDatabase;
 
 
-//    private ArrayList<Posts> postsArrayList;
-//    private LinearLayoutManager rLayoutManager;
-//    private RecyclerView recyclerView;
-//    private RecyclerviewAdapter recyclerViewAdapter;
 
 
 
