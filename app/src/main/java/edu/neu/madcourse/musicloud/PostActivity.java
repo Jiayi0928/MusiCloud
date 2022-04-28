@@ -433,7 +433,31 @@ public class PostActivity extends AppCompatActivity {
         });
     }
 
-
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.menu_res,menu);
+//        return true;
+//    }
+//
+//
+//
+//    @SuppressLint("NonConstantResourceId")
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        switch (item.getItemId()){
+//            case R.id.nav_dashboard:
+//                startActivity(new Intent(this,DashBoardActivity.class));
+//                return true;
+//            case R.id.nav_search:
+//            case R.id.nav_logout:
+//                return true;
+//
+//            default:
+//                return super.onOptionsItemSelected(item);
+//
+//        }
+//    }
 
 //    @Override
 //    public void onBackPressed(){
