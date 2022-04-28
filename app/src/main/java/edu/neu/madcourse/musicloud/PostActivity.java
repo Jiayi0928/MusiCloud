@@ -77,7 +77,6 @@ public class PostActivity extends AppCompatActivity {
     // Views
     private RelativeLayout navBarLayout;
     private ImageView navBarUserAvatar;
-    private ImageView navBarHome;
     private TextView navBarTitle;
     private ImageView songImage;
     private TextView songTitle;
@@ -102,17 +101,10 @@ public class PostActivity extends AppCompatActivity {
         // Bind views and set on click listeners
         navBarLayout = (RelativeLayout) findViewById(R.id.navbar);
         navBarUserAvatar = navBarLayout.findViewById(R.id.navUserAvatar);
-        navBarHome = navBarLayout.findViewById(R.id.navMenu);
+
+
         navBarTitle = navBarLayout.findViewById(R.id.navTitle);
         navBarTitle.setText("POST");
-        navBarHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(PostActivity.this, HomeScreenActivity.class);
-                intent.putExtra("currentUser", currentUser);
-                startActivity(intent);
-            }
-        });
 
         songImage = findViewById(R.id.songImg);
         songTitle = findViewById(R.id.songTitle);
@@ -433,17 +425,41 @@ public class PostActivity extends AppCompatActivity {
         });
     }
 
-
-
 //    @Override
-//    public void onBackPressed(){
-//        mediaPlayer.stop();
-////        Intent intent = new Intent(PostActivity.this,Home.class);
-////        intent;
-////        startActivity(intent);
-//        startActivity(new Intent(getApplicationContext(),HomeScreenActivity.class).putExtra("currentUser",currentUser));
-//        this.finish();
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.menu_res,menu);
+//        return true;
 //    }
+//
+//
+//
+//    @SuppressLint("NonConstantResourceId")
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        switch (item.getItemId()){
+//            case R.id.nav_dashboard:
+//                startActivity(new Intent(this,DashBoardActivity.class));
+//                return true;
+//            case R.id.nav_search:
+//            case R.id.nav_logout:
+//                return true;
+//
+//            default:
+//                return super.onOptionsItemSelected(item);
+//
+//        }
+//    }
+
+    @Override
+    public void onBackPressed(){
+        mediaPlayer.stop();
+//        Intent intent = new Intent(PostActivity.this,Home.class);
+//        intent;
+//        startActivity(intent);
+//        startActivity(new Intent(getApplicationContext(),HomeScreenActivity.class).putExtra("currentUser",currentUser));
+        this.finish();
+    }
 
     @Override
     protected void onDestroy() {
