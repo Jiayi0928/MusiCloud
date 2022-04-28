@@ -1,5 +1,6 @@
 package edu.neu.madcourse.musicloud.comments;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 import org.ocpsoft.prettytime.PrettyTime;
 
@@ -35,8 +37,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
     public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
         Comment comment = commentsList.get(position);
         PrettyTime p = new PrettyTime();
-
-        Glide.with(holder.itemView).load(comment.getUser().getProfileImage()).into(holder.commentUserImg);
+        Log.e("imageUri",String.valueOf(comment.getUser().getProfileImage()));
+        Picasso.get().load(comment.getUser().getProfileImage()).into(holder.commentUserImg);
+//        Glide.with(holder.itemView).load(comment.getUser().getProfileImage()).into(holder.commentUserImg);
 
         holder.commentUsername.setText(comment.getUser().getUsername());
         holder.commentContent.setText(comment.getContent());

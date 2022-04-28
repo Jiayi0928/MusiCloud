@@ -97,7 +97,8 @@ public class DashBoardActivity extends AppCompatActivity {
         userDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Glide.with(getApplicationContext()).load(snapshot.getValue()).into(avatar);
+                Log.e("img4",snapshot.getValue(String.class));
+                Glide.with(getApplicationContext()).load(snapshot.getValue(String.class)).into(avatar);
             }
 
             @Override
@@ -111,6 +112,7 @@ public class DashBoardActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),GetAvatar.class);
+
                 intent.putExtra("currentUser",currentUser);
                 startActivity(intent);
             }

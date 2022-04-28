@@ -64,6 +64,7 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
                 intent.putExtra("img",post.getImg());
                 intent.putExtra("preview",post.getPreview());
                 intent.putExtra("track_uri",post.getTrack_uri());
+                Log.e("imageUri3",String.valueOf(currentUser.getProfileImage()));
                 intent.putExtra("currentUser", currentUser);
                 view.getContext().startActivity(intent);
             }
