@@ -98,11 +98,16 @@ public class LoginActivity extends AppCompatActivity {
                     // If user does not exist in DB
                     Toast.makeText(getApplicationContext(), "User does not exist!", Toast.LENGTH_LONG).show();
                 } else {
-                    User currentUser = snapshot.child(username).getValue(User.class);
-                    //Intent intent = new Intent(LoginActivity.this, Home.class);
-                    Intent intent =new Intent(LoginActivity.this,HomeScreenActivity.class);
-                    intent.putExtra("currentUser", currentUser);
-                    startActivity(intent);
+                    // If username and password do not match
+                    if (!snapshot.child(username).child("password").getValue(String.class).equals(password)) {
+                        Toast.makeText(getApplicationContext(), "Username and password do not match!", Toast.LENGTH_LONG).show();
+                    } else {
+                        // Log in success
+                        User currentUser = snapshot.child(username).getValue(User.class);
+                        Intent intent = new Intent(LoginActivity.this,HomeScreenActivity.class);
+                        intent.putExtra("currentUser", currentUser);
+                        startActivity(intent);
+                    }
                 }
             }
 

@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.media.AudioAttributes;
@@ -43,11 +41,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -81,7 +76,6 @@ public class PostActivity extends AppCompatActivity {
 
     // Views
     private RelativeLayout navBarLayout;
-    private RelativeLayout commentLayout;
     private ImageView navBarUserAvatar;
     private TextView navBarTitle;
     private ImageView songImage;
@@ -94,7 +88,7 @@ public class PostActivity extends AppCompatActivity {
     private TextInputLayout commentInputLayout;
     private TextInputEditText commentInput;
     private MediaPlayer mediaPlayer;
-    private ImageView commentImg;
+    private ImageView menu;
 
 
     @Override
@@ -112,9 +106,6 @@ public class PostActivity extends AppCompatActivity {
         navBarTitle = navBarLayout.findViewById(R.id.navTitle);
         navBarTitle.setText("POST");
 
-        commentLayout = (RelativeLayout)findViewById(R.id.addCommentLayout);
-
-
         songImage = findViewById(R.id.songImg);
         songTitle = findViewById(R.id.songTitle);
         songArtist = findViewById(R.id.songArtist);
@@ -126,7 +117,6 @@ public class PostActivity extends AppCompatActivity {
         commentSectionCnt = findViewById(R.id.commentsCnt);
         commentInputLayout = findViewById(R.id.commentsInputLayout);
         commentInput = findViewById(R.id.commentsInput);
-        commentImg = commentLayout.findViewById(R.id.commentUserImg);
 
 
 
@@ -182,10 +172,7 @@ public class PostActivity extends AppCompatActivity {
         songTitle.setText(currSong.getTitle());
         songArtist.setText(currSong.getArtist());
         Glide.with(getApplicationContext()).load(currSong.getImg()).into(songImage);
-
         Glide.with(getApplicationContext()).load(currentUser.getProfileImage()).into(navBarUserAvatar);
-//        Picasso.get().load(currentUser.getProfileImage()).into(navBarUserAvatar);
-        Log.e("img",String.valueOf(currentUser.getProfileImage()));
 
         // Initialize empty comments list and create RecyclerView
         commentsList = new ArrayList<>();
@@ -359,7 +346,6 @@ public class PostActivity extends AppCompatActivity {
 
         Comment comment = new Comment(currentUser, content, now, currSong.getTrack_uri());
 
-
         // Add comment to posts (/posts/postId/comments) and to user (/users/userId/comments)
         String commentId = commentsDbReference.push().getKey();
         commentsDbReference.child(commentId).setValue(comment);
@@ -439,7 +425,31 @@ public class PostActivity extends AppCompatActivity {
         });
     }
 
-
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.menu_res,menu);
+//        return true;
+//    }
+//
+//
+//
+//    @SuppressLint("NonConstantResourceId")
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        switch (item.getItemId()){
+//            case R.id.nav_dashboard:
+//                startActivity(new Intent(this,DashBoardActivity.class));
+//                return true;
+//            case R.id.nav_search:
+//            case R.id.nav_logout:
+//                return true;
+//
+//            default:
+//                return super.onOptionsItemSelected(item);
+//
+//        }
+//    }
 
     @Override
     public void onBackPressed(){
@@ -447,7 +457,7 @@ public class PostActivity extends AppCompatActivity {
 //        Intent intent = new Intent(PostActivity.this,Home.class);
 //        intent;
 //        startActivity(intent);
-//        startActivity(new Intent(getApplicationContext(),HomeScreenActivity.class).putExtra("currentUser",currentUser));
+        startActivity(new Intent(getApplicationContext(),HomeScreenActivity.class).putExtra("currentUser",currentUser));
         this.finish();
     }
 
