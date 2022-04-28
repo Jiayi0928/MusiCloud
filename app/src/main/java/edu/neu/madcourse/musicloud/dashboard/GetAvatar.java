@@ -41,7 +41,7 @@ import com.google.android.gms.common.internal.Objects;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
-import com.theartofdev.edmodo.cropper.CropImage;
+
 
 import java.io.File;
 import java.io.FileNotFoundException;

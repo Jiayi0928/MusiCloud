@@ -34,6 +34,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.io.IOException;
 
 import edu.neu.madcourse.musicloud.Home;
+import edu.neu.madcourse.musicloud.HomeScreenActivity;
+import edu.neu.madcourse.musicloud.PostActivity;
 import edu.neu.madcourse.musicloud.R;
 import edu.neu.madcourse.musicloud.User;
 
@@ -54,6 +56,9 @@ public class DashBoardActivity extends AppCompatActivity {
 
     private DatabaseReference databaseReference;
     private DatabaseReference userDatabase;
+    private RelativeLayout navBarLayout;
+    private ImageView navBarHome;
+
 
 
 
@@ -69,6 +74,16 @@ public class DashBoardActivity extends AppCompatActivity {
         shake=(Button) findViewById(R.id.shaky);
         relativeLayout= findViewById(R.id.dashboardHead);
         name = relativeLayout.findViewById(R.id.nickName);
+        navBarLayout = (RelativeLayout) findViewById(R.id.navbar2);
+        navBarHome = navBarLayout.findViewById(R.id.navMenu);
+        navBarHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DashBoardActivity.this, HomeScreenActivity.class);
+                intent.putExtra("currentUser", currentUser);
+                startActivity(intent);
+            }
+        });
 
         Bundle extras = getIntent().getExtras();
         if (extras != null && extras.getParcelable("currentUser") != null) {
@@ -120,8 +135,9 @@ public class DashBoardActivity extends AppCompatActivity {
         int screenHeight = displayMetrics.heightPixels;
         RelativeLayout dashboardHead = (RelativeLayout) findViewById(R.id.dashboardHead);
         int dashboard_height = dashboardHead.getHeight();
+        int toolbar_height = navBarLayout.getHeight();
         int tab_height = tabLayout.getHeight();
-        int height = screenHeight-dashboard_height-tab_height;
+        int height = screenHeight-dashboard_height-tab_height-toolbar_height;
 
 
 

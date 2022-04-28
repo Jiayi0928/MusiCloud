@@ -77,8 +77,8 @@ public class PostActivity extends AppCompatActivity {
     // Views
     private RelativeLayout navBarLayout;
     private ImageView navBarUserAvatar;
-    private TextView navBarTitle;
     private ImageView navBarHome;
+    private TextView navBarTitle;
     private ImageView songImage;
     private TextView songTitle;
     private TextView songArtist;
@@ -102,8 +102,6 @@ public class PostActivity extends AppCompatActivity {
         // Bind views and set on click listeners
         navBarLayout = (RelativeLayout) findViewById(R.id.navbar);
         navBarUserAvatar = navBarLayout.findViewById(R.id.navUserAvatar);
-
-
         navBarHome = navBarLayout.findViewById(R.id.navMenu);
         navBarTitle = navBarLayout.findViewById(R.id.navTitle);
         navBarTitle.setText("POST");
@@ -461,15 +459,15 @@ public class PostActivity extends AppCompatActivity {
 //        }
 //    }
 
-    @Override
-    public void onBackPressed(){
-        mediaPlayer.stop();
-//        Intent intent = new Intent(PostActivity.this,Home.class);
-//        intent;
-//        startActivity(intent);
+//    @Override
+//    public void onBackPressed(){
+//        mediaPlayer.stop();
+////        Intent intent = new Intent(PostActivity.this,Home.class);
+////        intent;
+////        startActivity(intent);
 //        startActivity(new Intent(getApplicationContext(),HomeScreenActivity.class).putExtra("currentUser",currentUser));
-        this.finish();
-    }
+//        this.finish();
+//    }
 
     @Override
     protected void onDestroy() {
