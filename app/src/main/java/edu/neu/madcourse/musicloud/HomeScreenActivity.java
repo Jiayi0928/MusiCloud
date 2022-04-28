@@ -66,7 +66,7 @@ public class HomeScreenActivity extends AppCompatActivity {
     private RelativeLayout navBarLayout;
     private ImageView navBarUserAvatar;
     private TextView navBarTitle;
-
+    private ImageView navBarHome;
 
     User currentUser;
 
@@ -91,9 +91,12 @@ public class HomeScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_homescreen);
         navBarLayout = (RelativeLayout) findViewById(R.id.navbar);
         navBarUserAvatar = navBarLayout.findViewById(R.id.navUserAvatar);
+        navBarHome = navBarLayout.findViewById(R.id.navMenu);
+
         currentUser = getIntent().getExtras().getParcelable("currentUser");
         Glide.with(getApplicationContext()).load(currentUser.getProfileImage()).into(navBarUserAvatar);
-        navBarLayout.setOnClickListener(new View.OnClickListener() {
+
+        navBarUserAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeScreenActivity.this, DashBoardActivity.class);
@@ -102,8 +105,19 @@ public class HomeScreenActivity extends AppCompatActivity {
             }
         });
 
+        navBarHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Stays here
+//                Intent intent = new Intent(HomeScreenActivity.this, HomeScreenActivity.class);
+//                intent.putExtra("currentUser", currentUser);
+//                startActivity(intent);
+            }
+        });
+
         navBarTitle = navBarLayout.findViewById(R.id.navTitle);
         navBarTitle.setText("HOME");
+
         keyword = findViewById(R.id.keyword_input);
         searchBtn = findViewById(R.id.search_button);
         searchBtn.setOnClickListener(new View.OnClickListener() {
@@ -369,7 +383,11 @@ public class HomeScreenActivity extends AppCompatActivity {
         intent.putExtra("token",mAccessToken);
         intent.putExtra("keyword I need",s);
         intent.putExtra("currentUser", currentUser);
-        startActivity(intent);
+        if(s.equals("")){
+            Toast.makeText(getApplicationContext(),
+                    "Please enter something", Toast.LENGTH_SHORT).show();
+        }else{
+        startActivity(intent);}
     }
 
 }

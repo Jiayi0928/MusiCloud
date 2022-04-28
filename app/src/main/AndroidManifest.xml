@@ -29,13 +29,14 @@
             android:exported="false"/>
         <activity
             android:name=".dashboard.GetAvatar"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".dashboard.ShakeActivity"
             android:exported="false" />
         <activity
             android:name=".dashboard.DashBoardActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:noHistory="true"/>
         <activity
             android:name=".PostActivity"
             android:exported="false" />

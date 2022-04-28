@@ -31,17 +31,21 @@ public class User implements Parcelable {
         profileImage = in.readString();
     }
 
-    public static final Creator<User> CREATOR = new Creator<User>() {
-        @Override
-        public User createFromParcel(Parcel in) {
-            return new User(in);
-        }
+    public static final Creator<User> CREATOR;
 
-        @Override
-        public User[] newArray(int size) {
-            return new User[size];
-        }
-    };
+    static {
+        CREATOR = new Creator<User>() {
+            @Override
+            public User createFromParcel(Parcel in) {
+                return new User(in);
+            }
+
+            @Override
+            public User[] newArray(int size) {
+                return new User[size];
+            }
+        };
+    }
 
     public void setUsername(String username) {
         this.username = username;

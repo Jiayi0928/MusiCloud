@@ -42,21 +42,16 @@ public class SearchResults extends AppCompatActivity {
     private User currentUser;
     private RelativeLayout navBarLayout;
     private ImageView navBarUserAvatar;
+    private ImageView navBarHome;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searchresults);
+
         navBarLayout = (RelativeLayout) findViewById(R.id.navbar);
         navBarUserAvatar = navBarLayout.findViewById(R.id.navUserAvatar);
-
-        navBarUserAvatar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SearchResults.this, DashBoardActivity.class);
-                intent.putExtra("currentUser",currentUser);
-                startActivity(intent);;
-            }
-        });
+        navBarHome = navBarLayout.findViewById(R.id.navMenu);
 
         // Retrieve current user
         Bundle extras = getIntent().getExtras();
@@ -65,6 +60,24 @@ public class SearchResults extends AppCompatActivity {
             Log.v("Logged in: ", currentUser.getUsername());
         }
         Glide.with(getApplicationContext()).load(currentUser.getProfileImage()).into(navBarUserAvatar);
+
+        navBarUserAvatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SearchResults.this, DashBoardActivity.class);
+                intent.putExtra("currentUser", currentUser);
+                startActivity(intent);;
+            }
+        });
+
+        navBarHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SearchResults.this, HomeScreenActivity.class);
+                intent.putExtra("currentUser", currentUser);
+                startActivity(intent);
+            }
+        });
 
         mAccessToken = getIntent().getExtras().getString("token");
         keyword_i_need = getIntent().getExtras().getString("keyword I need");
