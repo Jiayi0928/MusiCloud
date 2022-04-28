@@ -61,10 +61,6 @@ public class DashBoardActivity extends AppCompatActivity {
 
 
 
-//    private ArrayList<Posts> postsArrayList;
-//    private LinearLayoutManager rLayoutManager;
-//    private RecyclerView recyclerView;
-//    private RecyclerviewAdapter recyclerViewAdapter;
 
 
 
