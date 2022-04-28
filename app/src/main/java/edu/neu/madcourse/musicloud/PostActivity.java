@@ -78,6 +78,7 @@ public class PostActivity extends AppCompatActivity {
     private RelativeLayout navBarLayout;
     private ImageView navBarUserAvatar;
     private TextView navBarTitle;
+    private ImageView navBarHome;
     private ImageView songImage;
     private TextView songTitle;
     private TextView songArtist;
@@ -103,8 +104,17 @@ public class PostActivity extends AppCompatActivity {
         navBarUserAvatar = navBarLayout.findViewById(R.id.navUserAvatar);
 
 
+        navBarHome = navBarLayout.findViewById(R.id.navMenu);
         navBarTitle = navBarLayout.findViewById(R.id.navTitle);
         navBarTitle.setText("POST");
+        navBarHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PostActivity.this, HomeScreenActivity.class);
+                intent.putExtra("currentUser", currentUser);
+                startActivity(intent);
+            }
+        });
 
         songImage = findViewById(R.id.songImg);
         songTitle = findViewById(R.id.songTitle);
@@ -457,7 +467,7 @@ public class PostActivity extends AppCompatActivity {
 //        Intent intent = new Intent(PostActivity.this,Home.class);
 //        intent;
 //        startActivity(intent);
-        startActivity(new Intent(getApplicationContext(),HomeScreenActivity.class).putExtra("currentUser",currentUser));
+//        startActivity(new Intent(getApplicationContext(),HomeScreenActivity.class).putExtra("currentUser",currentUser));
         this.finish();
     }
 
