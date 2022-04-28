@@ -92,7 +92,10 @@ public class GetAvatar extends AppCompatActivity {
         camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                askCameraPermissions();
+                //ask permission
+                if(ContextCompat.checkSelfPermission(GetAvatar.this,Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
+                    ActivityCompat.requestPermissions(GetAvatar.this,new String[] {Manifest.permission.CAMERA}, CAMERA_IMAGE);
+                }else {dispatchTakePictureIntent();}
             }
         });
         gallery=findViewById(R.id.gallery);
@@ -104,14 +107,7 @@ public class GetAvatar extends AppCompatActivity {
             }
         });
     }
-    private void askCameraPermissions() {
-        if(ContextCompat.checkSelfPermission(this,Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this,new String[] {Manifest.permission.CAMERA}, CAMERA_IMAGE);
-        }else {
-            dispatchTakePictureIntent();
-        }
-
-    }
+//refer code from: https://developer.android.com/training/camera/photobasics
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent

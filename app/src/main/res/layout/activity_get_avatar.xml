@@ -23,8 +23,7 @@
             android:src="@drawable/anon"
             tools:layout_conversion_absoluteHeight="60dp"
             tools:layout_conversion_absoluteWidth="60dp"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp" />
+            />
 
     </com.google.android.material.card.MaterialCardView>
 
