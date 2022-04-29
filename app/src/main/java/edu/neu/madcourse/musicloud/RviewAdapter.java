@@ -38,7 +38,7 @@ public class RviewAdapter extends RecyclerView.Adapter<RviewAdapter.ViewHolder> 
         holder.title_name.setText(curSong.getTitle());
         Picasso.get().load(curSong.getImg()).into(holder.album_img);
 
-        holder.title_name.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), PostActivity.class);
