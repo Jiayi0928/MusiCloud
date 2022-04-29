@@ -8,30 +8,15 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".dashboard.DashBoardActivity">
-    <RelativeLayout
+
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/navbar2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp">
 
-            <ImageView
-                android:id="@+id/navMenu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_baseline_home_24" />
-
-
-        </RelativeLayout>
-
-
-
-    </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
 
 
     <RelativeLayout
@@ -127,10 +112,20 @@
 
     </androidx.viewpager2.widget.ViewPager2>
 
+    <RelativeLayout
+        android:layout_width="673dp"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/navMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_baseline_home_24" />
 
 
-
-
+    </RelativeLayout>
 
 
 </RelativeLayout>

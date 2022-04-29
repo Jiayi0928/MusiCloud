@@ -80,6 +80,10 @@ public class LoginActivity extends AppCompatActivity {
         dbReference = FirebaseDatabase.getInstance().getReference();
         usersDbReference = dbReference.child("users");
     }
+    @Override
+    public void onBackPressed() {
+
+    }
 
 
     /**

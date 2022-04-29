@@ -1,5 +1,6 @@
 package edu.neu.madcourse.musicloud.dashboard;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.MediaPlayer;
@@ -8,6 +9,9 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -19,6 +23,7 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentContainerView;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -35,6 +40,7 @@ import java.io.IOException;
 
 import edu.neu.madcourse.musicloud.Home;
 import edu.neu.madcourse.musicloud.HomeScreenActivity;
+import edu.neu.madcourse.musicloud.LoginActivity;
 import edu.neu.madcourse.musicloud.PostActivity;
 import edu.neu.madcourse.musicloud.R;
 import edu.neu.madcourse.musicloud.User;
@@ -56,7 +62,7 @@ public class DashBoardActivity extends AppCompatActivity {
 
     private DatabaseReference databaseReference;
     private DatabaseReference userDatabase;
-    private RelativeLayout navBarLayout;
+    private Toolbar navBarLayout;
     private ImageView navBarHome;
 
 
@@ -74,8 +80,23 @@ public class DashBoardActivity extends AppCompatActivity {
         shake=(Button) findViewById(R.id.shaky);
         relativeLayout= findViewById(R.id.dashboardHead);
         name = relativeLayout.findViewById(R.id.nickName);
-        navBarLayout = (RelativeLayout) findViewById(R.id.navbar2);
-        navBarHome = navBarLayout.findViewById(R.id.navMenu);
+
+
+        navBarLayout = (Toolbar) findViewById(R.id.navbar2);
+        navBarLayout.inflateMenu(R.menu.menu_res);
+        navBarLayout.setOnMenuItemClickListener(menuItem -> {
+            int itemId = menuItem.getItemId();
+            if (itemId == R.id.nav_logout) {
+               startActivity(new Intent(this,LoginActivity.class));
+
+                return true;
+            }
+            return false;
+        });
+
+
+
+        navBarHome = findViewById(R.id.navMenu);
         navBarHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -155,14 +176,9 @@ public class DashBoardActivity extends AppCompatActivity {
             tab.setText(tabName[position]);
         })).attach();
 
-
-
-
-
-
-
-
     }
+
+
 
 
 }
