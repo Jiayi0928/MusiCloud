@@ -142,10 +142,7 @@ public class PostActivity extends AppCompatActivity {
         // Retrieve song data and user, set currSong and currUser
 //        Bundle extras = getIntent().getExtras();
         Bundle extras = getIntent().getExtras();
-//        if (extras != null && extras.getParcelable("postId") != null) {
-//            postId = extras.getParcelable("postId");
-//
-//        }
+
         if (extras != null) {
             String title = extras.getString("title");
             String artist = extras.getString("artist");
