@@ -128,8 +128,9 @@ public class LikesFragment extends Fragment {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            recyclerView.setAdapter(recyclerViewAdapter);
+
             recyclerView.setLayoutManager(new GridLayoutManager(view.getContext(),2));
+            recyclerView.setAdapter(recyclerViewAdapter);
             loading.dismissDialog();
         }
 

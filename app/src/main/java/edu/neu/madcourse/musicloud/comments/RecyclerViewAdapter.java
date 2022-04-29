@@ -38,8 +38,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
         Comment comment = commentsList.get(position);
         PrettyTime p = new PrettyTime();
         Log.e("imageUri",String.valueOf(comment.getUser().getProfileImage()));
-        Picasso.get().load(comment.getUser().getProfileImage()).into(holder.commentUserImg);
-//        Glide.with(holder.itemView).load(comment.getUser().getProfileImage()).into(holder.commentUserImg);
+//        Picasso.get().load(comment.getUser().getProfileImage()).into(holder.commentUserImg);
+        Glide.with(holder.itemView).load(comment.getUser().getProfileImage()).into(holder.commentUserImg);
 
         holder.commentUsername.setText(comment.getUser().getUsername());
         holder.commentContent.setText(comment.getContent());

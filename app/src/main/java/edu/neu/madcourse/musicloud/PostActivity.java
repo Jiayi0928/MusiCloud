@@ -77,6 +77,7 @@ public class PostActivity extends AppCompatActivity {
     // Views
     private RelativeLayout navBarLayout;
     private ImageView navBarUserAvatar;
+    private ImageView navBarHome;
     private TextView navBarTitle;
     private ImageView songImage;
     private TextView songTitle;
@@ -101,6 +102,16 @@ public class PostActivity extends AppCompatActivity {
         // Bind views and set on click listeners
         navBarLayout = (RelativeLayout) findViewById(R.id.navbar);
         navBarUserAvatar = navBarLayout.findViewById(R.id.navUserAvatar);
+        navBarHome = navBarLayout.findViewById(R.id.navMenu);
+        navBarHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), HomeScreenActivity.class);
+                intent.putExtra("currentUser", currentUser);
+                startActivity(intent);
+            }
+        });
+
 
 
         navBarTitle = navBarLayout.findViewById(R.id.navTitle);

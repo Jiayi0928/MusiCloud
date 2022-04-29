@@ -185,6 +185,7 @@ public class GetAvatar extends AppCompatActivity {
                 String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
                 String imageFileName = "JPEG_" + timeStamp +"."+getFileExt(contentUri);
                 Log.d("tag", "onActivityResult: Gallery Image Uri:  " +  imageFileName);
+                Log.e("content",String.valueOf(contentUri));
                 avatar.setImageURI(contentUri);
                 currentUser.setProfileImage(String.valueOf(contentUri));
                 userDatabase.setValue(String.valueOf(contentUri));
