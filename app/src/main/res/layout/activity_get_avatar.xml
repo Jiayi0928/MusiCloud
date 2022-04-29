@@ -27,25 +27,44 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <Button
-        android:id="@+id/camera"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="101dp"
         android:layout_below="@id/navUserAvatarCard"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
-        android:fontFamily="@font/fjalla_one"
-        android:text="Camera" />
+        android:layout_marginTop="34dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent">
 
-    <Button
-        android:id="@+id/gallery"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/navUserAvatarCard"
-        android:layout_alignRight="@id/camera"
-        android:layout_marginTop="147dp"
-        android:fontFamily="@font/fjalla_one"
-        android:text="Gallery" />
+        <ImageView
+            android:id="@+id/camera"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+
+            android:layout_centerVertical="true"
+            android:backgroundTint="@color/black"
+            app:layout_constraintEnd_toStartOf="@id/gallery"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            app:srcCompat="@android:drawable/ic_menu_camera"
+            tools:layout_editor_absoluteY="1dp" />
+
+        <ImageView
+            android:id="@+id/gallery"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:backgroundTint="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+
+            app:layout_constraintStart_toEndOf="@id/camera"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/ic_menu_gallery" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </android.widget.RelativeLayout>
