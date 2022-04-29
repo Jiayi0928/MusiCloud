@@ -32,6 +32,7 @@ import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -55,8 +56,8 @@ import edu.neu.madcourse.musicloud.R;
 import edu.neu.madcourse.musicloud.User;
 
 public class GetAvatar extends AppCompatActivity {
-    private Button camera;
-    private Button gallery;
+    private ImageView camera;
+    private ImageView gallery;
     private static final int CAMERA_IMAGE = 1;
     private static final int GALLERY_IMAGE = 2;
     private static final int STORAGE_REQUEST = 3;
