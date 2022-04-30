@@ -87,6 +87,7 @@ public class PostActivity extends AppCompatActivity {
     private TextView songLikes;
 
     private TextView commentSectionCnt;
+    private ImageView commentUserImg;
     private Button playButton, pauseButton;
     private TextInputLayout commentInputLayout;
     private TextInputEditText commentInput;
@@ -129,7 +130,7 @@ public class PostActivity extends AppCompatActivity {
         commentSectionCnt = findViewById(R.id.commentsCnt);
         commentInputLayout = findViewById(R.id.commentsInputLayout);
         commentInput = findViewById(R.id.commentsInput);
-
+        commentUserImg = findViewById(R.id.commentUserImg);
 
         // Handle posting comments
         commentInputLayout.setEndIconOnClickListener(new View.OnClickListener() {
@@ -178,6 +179,7 @@ public class PostActivity extends AppCompatActivity {
         songArtist.setText(currSong.getArtist());
         Glide.with(getApplicationContext()).load(currSong.getImg()).into(songImage);
         Glide.with(getApplicationContext()).load(currentUser.getProfileImage()).into(navBarUserAvatar);
+        Glide.with(getApplicationContext()).load(currentUser.getProfileImage()).into(commentUserImg);
 
         // Initialize empty comments list and create RecyclerView
         commentsList = new ArrayList<>();
