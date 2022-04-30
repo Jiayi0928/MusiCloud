@@ -46,6 +46,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 import edu.neu.madcourse.musicloud.comments.Comment;
 import edu.neu.madcourse.musicloud.comments.RecyclerViewAdapter;
@@ -53,6 +54,7 @@ import edu.neu.madcourse.musicloud.dashboard.DashBoardActivity;
 
 public class PostActivity extends AppCompatActivity {
     private final static String TAG = "PostActivity";
+    private static Context context;
 
     // Post info
     private Song currSong;
@@ -91,13 +93,12 @@ public class PostActivity extends AppCompatActivity {
     private MediaPlayer mediaPlayer;
     private ImageView menu;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
 
-
+        context = getApplicationContext();
 
         // Bind views and set on click listeners
         navBarLayout = (RelativeLayout) findViewById(R.id.navbar);
@@ -128,10 +129,6 @@ public class PostActivity extends AppCompatActivity {
         commentSectionCnt = findViewById(R.id.commentsCnt);
         commentInputLayout = findViewById(R.id.commentsInputLayout);
         commentInput = findViewById(R.id.commentsInput);
-
-
-
-
 
 
         // Handle posting comments
@@ -221,10 +218,10 @@ public class PostActivity extends AppCompatActivity {
                     // If the user has liked this post, the icon should be red
                     // Otherwise, the icon should be black
                     if (snapshot.child("likes").hasChild(currentUser.getUsername())) {
-                        Log.v("like", "liked");
+                        Log.v("post like", "liked");
                         songLikes.getCompoundDrawablesRelative()[0].setTint(Color.RED);
                     } else {
-                        Log.v("Like", "not liked");
+                        Log.v("post Like", "not liked");
                         songLikes.getCompoundDrawablesRelative()[0].setTint(Color.BLACK);
                     }
                 }
@@ -242,14 +239,55 @@ public class PostActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Comment newComment = snapshot.getValue(Comment.class);
+                List<User> likedUsers = new ArrayList<>();
+
+                for (DataSnapshot s: snapshot.child("likes").getChildren()) {
+                    User user = s.getValue(User.class);
+                    likedUsers.add(user);
+                }
+
+                newComment.setLikes(likedUsers);
+
                 commentsList.add(newComment);
+
                 Collections.sort(commentsList, Collections.reverseOrder());
                 recyclerViewAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Log.v(TAG, "comment changed in this post");
+                Comment changedComment = snapshot.getValue(Comment.class);
+                String commentId = changedComment.getCommentId();
 
+                List<User> likedUsers = new ArrayList<>();
+
+                // Update comments list
+                for (int i=0; i<commentsList.size(); i++) {
+
+                    // ith comment is the one we would like to modify
+                    if (commentsList.get(i).getCommentId().equals(commentId)) {
+                        // clear the likes in comment
+                        commentsList.get(i).setLikes(new ArrayList<User>());
+
+                        Log.v(TAG, snapshot.getValue(Comment.class).getCommentId());
+
+                        if (snapshot.child("likes").getValue() != null) {
+                            for (DataSnapshot s: snapshot.child("likes").getChildren()) {
+                                User user = s.getValue(User.class);
+                                likedUsers.add(user);
+                            }
+
+                        }
+                        commentsList.get(i).setLikeCnt(changedComment.getLikeCnt());
+                        commentsList.get(i).setLikes(likedUsers);
+
+                        Log.v(TAG, commentsList.get(i).getLikes().toString());
+
+                        recyclerViewAdapter.notifyDataSetChanged();
+                        break;
+                    }
+                }
             }
 
             @Override
@@ -318,6 +356,9 @@ public class PostActivity extends AppCompatActivity {
         });
     }
 
+    public static Context getContext() {
+        return context;
+    }
 
 
     /**
@@ -329,7 +370,7 @@ public class PostActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(rViewLayoutManager);
 
-        recyclerViewAdapter = new RecyclerViewAdapter(commentsList);
+        recyclerViewAdapter = new RecyclerViewAdapter(commentsList, currentUser);
         recyclerView.setAdapter(recyclerViewAdapter);
     }
 
@@ -356,6 +397,7 @@ public class PostActivity extends AppCompatActivity {
 
         // Add comment to posts (/posts/postId/comments) and to user (/users/userId/comments)
         String commentId = commentsDbReference.push().getKey();
+        comment.setCommentId(commentId); // Set the retrieved key to Comment object
         commentsDbReference.child(commentId).setValue(comment);
         userDbReference.child("comments").child(commentId).setValue(comment);
 
