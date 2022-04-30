@@ -81,7 +81,6 @@ public class PostActivity extends AppCompatActivity {
     private ImageView navBarUserAvatar;
     private ImageView navBarHome;
     private TextView navBarTitle;
-    private ImageView navBarHome;
     private ImageView songImage;
     private TextView songTitle;
     private TextView songArtist;
