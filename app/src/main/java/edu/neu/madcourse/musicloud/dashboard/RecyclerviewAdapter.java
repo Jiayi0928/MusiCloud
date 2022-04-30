@@ -47,8 +47,9 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
     public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
         Song post = postsArrayList.get(position);
         holder.setId(post.getTrack_uri());
+        Log.e("title",post.getTitle());
         holder.postsTitle.setText(post.getTitle());
-        Log.e("track uri",post.getTrack_uri());
+
         holder.subContent.setText(post.getArtist());
 //        Glide.with(holder.imageView.getContext()).load(post.getImage()).into(holder.imageView);
 //        Log.d("ImageUrl",post.getImage());

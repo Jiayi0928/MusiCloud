@@ -1,5 +1,7 @@
 package edu.neu.madcourse.musicloud.dashboard;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -34,13 +36,25 @@ import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.common.internal.Objects;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnPausedListener;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageMetadata;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 
@@ -66,15 +80,15 @@ public class GetAvatar extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private DatabaseReference userDatabase;
     private ImageView avatar;
-    String photoPath;
-    String cameraPermission[];
-    String storagePermission[];
-    File photo = null;
-    String imagePath2;
-    File image = null;
+    private DatabaseReference storageDatabase;
 
-    String currentPhotoPath;
-    File photoFile = null;
+   private String currentPhotoPath;
+   private File photoFile = null;
+   private   StorageReference storageRef;
+   private FirebaseStorage storage;
+   private UploadTask upload;
+   private ProgressBar progressBar;
+    private Loading loading;
 
 
     @Override
@@ -82,6 +96,8 @@ public class GetAvatar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_avatar);
         avatar = findViewById(R.id.navUserAvatar);
+        progressBar = findViewById(R.id.progressBar2);
+        progressBar.setVisibility(View.INVISIBLE);
         Bundle extras = getIntent().getExtras();
         if (extras != null && extras.getParcelable("currentUser") != null) {
             currentUser = extras.getParcelable("currentUser");
@@ -89,6 +105,9 @@ public class GetAvatar extends AppCompatActivity {
         }
         databaseReference = FirebaseDatabase.getInstance().getReference();
         userDatabase = databaseReference.child("users").child(currentUser.getUsername()).child("profileImage");
+        storage = FirebaseStorage.getInstance();
+        storageRef = storage.getReference();
+
         camera = findViewById(R.id.camera);
         camera.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,6 +166,7 @@ public class GetAvatar extends AppCompatActivity {
         currentPhotoPath = image.getAbsolutePath();
         return image;
     }
+    @SuppressLint("MissingSuperCall")
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == CAMERA_IMAGE) {
@@ -157,16 +177,20 @@ public class GetAvatar extends AppCompatActivity {
             }
         }
     }
+    @SuppressLint("MissingSuperCall")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == CAMERA_IMAGE) {
             if (resultCode == Activity.RESULT_OK) {
                 File f = new File(currentPhotoPath);
                 Uri contentUri = Uri.fromFile(f);
-                avatar.setImageURI(contentUri);
+
                 Log.d("tag", "ABsolute Url of Image is " + Uri.fromFile(f));
-                currentUser.setProfileImage(String.valueOf(contentUri));
-                userDatabase.setValue(String.valueOf(contentUri));
+
+                uploadPicture(contentUri);
+                getDownloadUri(upload,contentUri);
+
+
 
                 Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
 
@@ -185,15 +209,82 @@ public class GetAvatar extends AppCompatActivity {
                 String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
                 String imageFileName = "JPEG_" + timeStamp +"."+getFileExt(contentUri);
                 Log.d("tag", "onActivityResult: Gallery Image Uri:  " +  imageFileName);
-                avatar.setImageURI(contentUri);
-                currentUser.setProfileImage(String.valueOf(contentUri));
-                userDatabase.setValue(String.valueOf(contentUri));
+                Log.e("content",String.valueOf(contentUri));
+                uploadPicture(contentUri);
+                getDownloadUri(upload,contentUri);
+
+
 
             }
         }
 
 
     }
+
+    private void getDownloadUri(UploadTask upload, Uri contentUri) {
+        Log.e("File name","images/"+contentUri.getLastPathSegment());
+        StorageReference reference = storageRef.child("images/"+contentUri.getLastPathSegment());
+        reference.putFile(contentUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Log.e("File uri",String.valueOf(uri));
+                        progressBar.setVisibility(View.INVISIBLE);
+                        Glide.with(getApplicationContext()).load(uri).into(avatar);
+                        currentUser.setProfileImage(String.valueOf(uri));
+                        userDatabase.setValue(String.valueOf(uri));
+                    }
+                });
+            }
+        });
+
+
+    }
+//refer code from: https://firebase.google.com/docs/storage/android/upload-files
+    private void uploadPicture(Uri file) {
+
+
+// Create the file metadata
+      StorageMetadata  metadata = new StorageMetadata.Builder()
+                .setContentType("image/jpeg")
+                .build();
+
+// Upload file and metadata to the path 'images/mountains.jpg'
+      UploadTask  uploadTask = storageRef.child("images/"+file.getLastPathSegment()).putFile(file, metadata);
+
+// Listen for state changes, errors, and completion of the upload.
+        uploadTask.addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                progressBar.setVisibility(View.VISIBLE);
+                Log.d(TAG, "Upload is " + progress + "% done");
+            }
+        }).addOnPausedListener(new OnPausedListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onPaused(UploadTask.TaskSnapshot taskSnapshot) {
+                Log.d(TAG, "Upload is paused");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle unsuccessful uploads
+                progressBar.setVisibility(View.INVISIBLE);
+                Toast.makeText(getApplicationContext(),"Upload failed",Toast.LENGTH_SHORT).show();
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                // Handle successful uploads on complete
+
+                Toast.makeText(getApplicationContext(),"Upload successed",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
     private String getFileExt(Uri contentUri) {
         ContentResolver c = getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();

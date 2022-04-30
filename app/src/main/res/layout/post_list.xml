@@ -20,11 +20,12 @@
 
         <ImageView
             android:id="@+id/songImg"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/img_not_found" />
+            android:src="@drawable/img_not_found"
+            tools:ignore="MissingConstraints" />
 
         <LinearLayout
             android:id="@+id/songLinearLayout"
