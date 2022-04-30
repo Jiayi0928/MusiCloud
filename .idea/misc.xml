@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-v24/ic_baseline_add_24.xml" value="0.14166666666666666" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.14166666666666666" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background2.xml" value="0.14166666666666666" />
+        <entry key="app/src/main/res/drawable/ic_launcher_foreground2.xml" value="0.14166666666666666" />
         <entry key="app/src/main/res/drawable-anydpi/ic_close_eyes.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/ic_baseline_add_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/ic_baseline_vpn_key_24.xml" value="0.1" />
@@ -12,6 +16,8 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.15202702702702703" />
         <entry key="app/src/main/res/layout/activity_post.xml" value="0.17255434782608695" />
         <entry key="app/src/main/res/layout/navbar.xml" value="0.36231884057971014" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.35885416666666664" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.35885416666666664" />
       </map>
     </option>
   </component>
