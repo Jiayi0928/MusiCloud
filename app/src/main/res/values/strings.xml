@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MusicCloud</string>
+    <string name="app_name">MusiCloud</string>
     <string name="search_results">Search Results:</string>
     <string name="postUserText">Post Username</string>
     <string name="postTime">Post Time</string>
